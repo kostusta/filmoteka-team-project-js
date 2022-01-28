@@ -5,12 +5,12 @@
   "main": "index.js",
   "homepage": "https://kostusta.github.io/filmoteka-team-project-js",
   "scripts": {
-    "dev": "parcel src/*.html",
+    "dev": "parcel src/index.html --port 8080",
     "build": "parcel build src/*.html --public-url /filmoteka-team-project-js/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/kostusta/filmoteka-team-project-js.git"
   },
   "keywords": [],
   "author": "Stanislav Kostiuchenko <kostiusta@gmail.com>",
