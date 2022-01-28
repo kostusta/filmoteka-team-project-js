@@ -1,0 +1,1 @@
+{"version":3,"sources":["sass/_home-header.scss","sass/_galery.scss","sass/_footer.scss"],"names":[],"mappings":"AAAA,aACE,aCDF,MACE,WCDF,QACE","file":"src.a3e5916f.css","sourceRoot":"../src","sourcesContent":[".home-header{\n  color: tomato;\n}",".main{\n  color: blue;\n}",".footer {\n  color: teal;\n}"]}
