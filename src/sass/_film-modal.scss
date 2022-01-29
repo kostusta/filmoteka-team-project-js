@@ -1,7 +1,11 @@
 // Стили для film-modal partial
-.card {
-  padding-top: 48px;
-  padding-bottom: 40px;
+
+.modal {
+  width: 280px;
+  margin: 0 auto;
+  position: relative;
+  padding: 48px 20px 40px 20px;
+  border: 2px solid red;
 }
 
 .card__wrapper {
@@ -17,8 +21,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 25px;
-  //   display: flex;
-  //   justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .card__title {
   font-weight: 500;
@@ -124,3 +128,25 @@
   color: #ffffff;
   border: hidden;
 } */
+
+// .container-modal {
+//   position: relative;
+// }
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 5px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  cursor: pointer;
+
+  &:hover > .close-cross,
+  &:focus > .close-cross {
+    stroke: #ff6b01;
+  }
+}
+.close-cross {
+  stroke: black;
+}
