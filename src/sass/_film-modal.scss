@@ -1,1 +1,126 @@
 // Стили для film-modal partial
+.card {
+  padding-top: 48px;
+  padding-bottom: 40px;
+}
+
+.card__wrapper {
+  background-color: cyan;
+  margin-bottom: 30px;
+}
+
+.card__image {
+}
+
+.card__description {
+  background-color: darkkhaki;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 25px;
+  //   display: flex;
+  //   justify-content: space-between;
+}
+.card__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+}
+.card__label {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8c8c8c;
+  margin-bottom: 10px;
+}
+.card__rating {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+.card__rating--orange {
+  background-color: #ff6b01;
+  color: #fff;
+
+  padding: 1px 8px;
+  border-radius: 5px;
+}
+.card__rating--white {
+  background-color: #f7f7f7;
+
+  padding: 1px 4px;
+  border-radius: 5px;
+}
+/* .card__rating--num {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+.card__rating--text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+} */
+/* .card__label--text {
+  color: #000;
+} */
+
+.card__about {
+  background-color: darksalmon;
+}
+.card__subtitle {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card__text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+  padding-bottom: 20px;
+}
+.card__buttons {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.card__btn {
+  width: 112px;
+  height: 44px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+.card__btn:hover {
+  background-color: #ff6b01;
+  color: #ffffff;
+  border: hidden;
+}
+/* .card__btn--orange {
+  background-color: #ff6b01;
+  color: #ffffff;
+  border: hidden;
+}
+.card__btn--orange:hover {
+  background-color: rgba(0, 0, 0, 0);
+  color: inherit;
+  border: 1px solid #000000;
+}
+.card__btn--white {
+  background-color: rgba(0, 0, 0, 0);
+}
+.card__btn--white:hover {
+  background-color: #ff6b01;
+  color: #ffffff;
+  border: hidden;
+} */
