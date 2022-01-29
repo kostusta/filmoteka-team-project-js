@@ -1,31 +1,31 @@
 <!-- FT-16 Сверстать шаблон модалки одного фильма (мобилка, планшет, десктоп) -->
-<div class="modal">
-  <div class="container-modal">
-    <button
-      type="button"
-      class="close-button js-close-menu"
-      data-menu-button
-      aria-expanded="false"
-      aria-controls="menu-container"
-    >
-      <svg class="close-cross" width="25" height="25" viewBox="0 0 30 30">
-        <path d="M8 8L22 22" stroke-width="2" />
-        <path d="M8 22L22 8" stroke-width="2" />
-      </svg>
-    </button>
-    <div class="card__wrapper">
-      <img class="card__image" src="/images/film-modal/mob.jpg" alt="A FISTFUL OF LEAD" />
-    </div>
+<div class="card">
+  <button
+    type="button"
+    class="close-button js-close-menu"
+    data-menu-button
+    aria-expanded="false"
+    aria-controls="menu-container"
+  >
+    <svg class="close-cross" width="25" height="25" viewBox="0 0 30 30">
+      <path d="M8 8L22 22" stroke-width="2" />
+      <path d="M8 22L22 8" stroke-width="2" />
+    </svg>
+  </button>
+  <div class="card__wrapper1">
+    <img class="card__image" src="/images/film-modal/mob.jpg" alt="A FISTFUL OF LEAD" />
+  </div>
+  <div class="card__wrapper2">
     <h1 class="card__title">A FISTFUL OF LEAD</h1>
 
     <div class="card__description">
-      <div>
+      <div class="card__description--1">
         <p class="card__label">Vote / Votes</p>
         <p class="card__label">Popularity</p>
         <p class="card__label">Original Title</p>
         <p class="card__label">Genre</p>
       </div>
-      <div>
+      <div class="card__description--2">
         <p class="card__rating">
           <span class="card__rating--orange">7.3</span>
           <span>/</span>
