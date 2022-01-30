@@ -1,1 +1,91 @@
-// Стили для team modal partial
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99999;
+  overflow: auto;
+}
+.modal_vis {
+  display: block;
+}
+.body_block {
+  overflow: hidden;
+  margin-right: 17px;
+}
+#close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 5px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  cursor: pointer;
+
+  &:hover > .close-cross,
+  &:focus > .close-cross {
+    stroke: #ff6b01;
+  }
+}
+
+// содержимое.карточки
+
+.team {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #f5f4fa;
+  padding-top: 50px;
+}
+
+.team-list {
+  display: flex;
+}
+
+.team-list-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.187;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.team-list-text {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.187;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: grey;
+  padding-bottom: 16px;
+}
+
+.social-list-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding-left: 115px;
+
+  &:hover,
+  &:focus {
+    background-color: blue;
+  }
+}
+
+.social-list-icon {
+  width: 30px;
+  height: 30px;
+  fill: orangered;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  .social-list-link:hover &,
+  .social-list-link:focus & {
+    fill: orangered;
+  }
+}
