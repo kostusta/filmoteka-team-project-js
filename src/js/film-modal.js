@@ -20,28 +20,28 @@
   refs.closeModalBtn.addEventListener('click', closeModal);
   refs.libraryList.addEventListener('click', openModal);
   refs.modal.addEventListener("click", onBackDropClick);
-  document.addEventListener("keydown", onEscapeClick);
+
+
+    export function openModal(e) {
+	    document.addEventListener("keydown", onEscapeClick);
+	      refs.modal.classList.remove('is-hidden');
+  }
+
 
   export function closeModal(e) {
+		document.removeEventListener("keydown", onEscapeClick);
     refs.modal.classList.add('is-hidden');
   }
 
-  export function onEscapeClick(e) {
-	   if(e.key === 'Escape'){
+   function onEscapeClick(e) {
+	   if(e.code === 'Escape'){
 		    closeModal();
-			document.removeEventListener("keydown", onEscapeClick);
 	  }
   }
-  export function onBackDropClick(e) {
+   function onBackDropClick(e) {
 	  if(e.currentTarget === e.target){
 		  closeModal();
 	  }
-  }
-
-  export function openModal(e) {
-	    document.addEventListener("keydown", onEscapeClick);
-
-	      refs.modal.classList.remove('is-hidden');
   }
 
 
