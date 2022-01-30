@@ -64,7 +64,9 @@ module.exports={version:"0.25.0"};
 module.exports=require("./lib/axios");
 },{"./lib/axios":"nUiQ"}],"qmFi":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getColection=n;var e=t(require("axios"));function t(e){return e&&e.__esModule?e:{default:e}}const a={gallery:document.querySelector(".library__list")},r=({poster_path:e,backdrop_path:t,original_title:a})=>`<li class="item">\n        <a class="card-link" href="https://image.tmdb.org/t/p/w500${t}">\n          <div class="thumb"><img src="https://image.tmdb.org/t/p/w500${e}" alt="" /></div>\n          <p>\n            ${a} <br />\n            <span>Drama, Action | 2020</span>\n          </p>\n        </a>\n      </li>`;function n(){return e.default.get("https://api.themoviedb.org/3/trending/movie/week?api_key=0a0eacc01c98f8ef04ac7ca82867ea4e&total_results=100").then(({data:e})=>{const t=e.results.map(r);a.gallery.insertAdjacentHTML("beforeend",t.join(""))})}
-},{"axios":"dZBD"}],"bcKP":[function(require,module,exports) {
-"use strict";require("./sass/main.scss");var s=require("./js/galery");(0,s.getColection)();
-},{"./sass/main.scss":"clu1","./js/galery":"qmFi"}]},{},["bcKP"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/my-library.4d5f559e.js.map
+},{"axios":"dZBD"}],"v6dG":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.onOpenModal=t,exports.onCloseModal=o,exports.refs=void 0;const e={libraryList:document.querySelector(".library__list"),closeModalBtn:document.querySelector("[data-modal-close]"),modal:document.querySelector("[data-modal]")};function t(t){document.addEventListener("keydown",d),e.modal.classList.remove("is-hidden")}function o(t){document.removeEventListener("keydown",d),e.modal.classList.add("is-hidden")}function d(e){"Escape"===e.code&&o()}function n(e){e.currentTarget===e.target&&o()}exports.refs=e,e.closeModalBtn.addEventListener("click",o),e.libraryList.addEventListener("click",t),e.modal.addEventListener("click",n);
+},{}],"Focm":[function(require,module,exports) {
+"use strict";require("./sass/main.scss");var e=require("./js/galery");require("./js/film-modal"),(0,e.getColection)();
+},{"./sass/main.scss":"clu1","./js/galery":"qmFi","./js/film-modal":"v6dG"}]},{},["Focm"], null)
+//# sourceMappingURL=/filmoteka-team-project-js/src.b61a0389.js.map
