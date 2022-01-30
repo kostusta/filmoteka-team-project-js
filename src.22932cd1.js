@@ -67,4 +67,4 @@ module.exports=require("./lib/axios");
 },{"axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var s=require("./js/galery");(0,s.getColection)();
 },{"./sass/main.scss":"clu1","./js/galery":"qmFi"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/src.c64e0c7a.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/src.22932cd1.js.map
