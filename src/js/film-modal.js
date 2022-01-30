@@ -17,30 +17,30 @@
     modal: document.querySelector('[data-modal]'),
   };
 
-  refs.closeModalBtn.addEventListener('click', closeModal);
-  refs.libraryList.addEventListener('click', openModal);
+  refs.closeModalBtn.addEventListener('click', onCloseModal);
+  refs.libraryList.addEventListener('click', onOpenModal);
   refs.modal.addEventListener("click", onBackDropClick);
 
 
-    export function openModal(e) {
+    export function onOpenModal(e) {
 	    document.addEventListener("keydown", onEscapeClick);
 	      refs.modal.classList.remove('is-hidden');
   }
 
 
-  export function closeModal(e) {
+  export function onCloseModal(e) {
 		document.removeEventListener("keydown", onEscapeClick);
     refs.modal.classList.add('is-hidden');
   }
 
    function onEscapeClick(e) {
 	   if(e.code === 'Escape'){
-		    closeModal();
+		    onCloseModal();
 	  }
   }
    function onBackDropClick(e) {
 	  if(e.currentTarget === e.target){
-		  closeModal();
+		  onCloseModal();
 	  }
   }
 
