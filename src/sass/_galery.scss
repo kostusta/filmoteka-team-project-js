@@ -1,1 +1,85 @@
 // Стили для galery partial
+.library {
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__container {
+    padding: 0;
+    @media screen and (min-width: 768px) {
+      padding: 60px 75px 0 75px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding: 60px 70px 0 71px;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+    @media screen and (max-width: 767.9px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -30px;
+      margin-top: -30px;
+    }
+
+    .item {
+      width: 280px;
+      height: 443px;
+      margin-top: 20px;
+
+      @media screen and (min-width: 768px) {
+        width: 294px;
+        height: 440px;
+        margin-left: 30px;
+        margin-top: 30px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        width: 274px;
+        height: 439px;
+      }
+
+      .thumb {
+        height: 398px;
+        width: 280px;
+        @media screen and (min-width: 768px) {
+          width: 294px;
+        }
+        @media screen and (min-width: 1024px) {
+          width: 274px;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      p {
+        margin-top: 10px;
+      }
+
+      span {
+        color: #ff6b08;
+      }
+    }
+  }
+}
