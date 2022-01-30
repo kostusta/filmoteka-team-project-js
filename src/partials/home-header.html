@@ -1,4 +1,42 @@
 <!-- FT-01 Сверстать хедер главной страницы (мобилка, планшет, десктоп) -->
 
-<section class="container">
-</section>
+<header class="header header-home" id="header">
+    <div class="header-container header-container-home container">
+        <div class="header-menu">
+            <a href="./index.html" class="header__logo">
+                <svg width="24" height="24" class="header__logo-icon">
+                    <use href="./images/header-home/header-icon-film.svg#film"></use>
+                </svg>
+                <span class="header__logo-title">Filmoteka</span>
+            </a>
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                       <a href="./index.html" class="nav-list__link current">home</a>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/" class="nav-list__link">my library</a>
+                    </li>
+            
+                </ul>
+            </nav>
+        </div>
+
+        <div class="header-form">
+            <form class="search-form">
+                <div class="search-position">
+                    <input type="text" name="searchQuery" placeholder="Поиск фильмов" class="header__input" />
+                    <button type="submit" class="search-button">
+                        <svg width="12" height="12" class="search-icon">
+                            <use href="./images/header-home/header-icon-search.svg#search"></use>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <p class="error-message visually-hidden">Search result not successful. Enter the correct movie name and try
+            again.</p>
+
+    </div>
+</header>
