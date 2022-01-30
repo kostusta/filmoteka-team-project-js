@@ -3,16 +3,11 @@
   p {
     margin: 0;
   }
-  img {
-    display: inline-block;
-    width: 100%;
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: #000000;
 
   &__container {
     padding: 0;
@@ -21,7 +16,7 @@
     }
 
     @media screen and (min-width: 1024px) {
-      padding: 60px 70px 0 70px;
+      padding: 60px 70px 0 71px;
     }
   }
 
@@ -50,7 +45,6 @@
       margin-top: 20px;
 
       @media screen and (min-width: 768px) {
-        // 294px
         width: 294px;
         height: 440px;
         margin-left: 30px;
@@ -60,6 +54,23 @@
       @media screen and (min-width: 1024px) {
         width: 274px;
         height: 439px;
+      }
+
+      .thumb {
+        height: 398px;
+        width: 280px;
+        @media screen and (min-width: 768px) {
+          width: 294px;
+        }
+        @media screen and (min-width: 1024px) {
+          width: 274px;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
       }
 
       p {
@@ -72,15 +83,3 @@
     }
   }
 }
-
-// @media screen and (max-width: 767px) {
-//     max-width: 320px;
-//   }
-
-//   @media screen and (min-width: 768px) {
-//     width: 768px;
-//   }
-
-//   @media screen and (min-width: 1024px) {
-//     width: 1024px;
-//   }
