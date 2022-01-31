@@ -1,1 +1,130 @@
-// Стили для team modal partial
+.team-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s ease 0s;
+}
+
+.team-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.team-modal.open .team-modal-content {
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.team-modal-body {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+}
+
+.team-modal-content {
+  background-color: #fff;
+  color: black;
+  max-width: 1000px;
+  padding: 10px;
+  position: relative;
+  transition: all 0.8s ease 0s;
+  opacity: 0;
+  transform: translate(0px, -100%);
+}
+
+.team-modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  color: black;
+
+  &:hover,
+  &:focus {
+    color: orange;
+  }
+}
+
+// ============CARDS=================
+.team {
+  padding-top: 40px;
+}
+
+.team-img {
+  width: 260px;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .team {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.team-list-item {
+  margin-bottom: 15px;
+  // border: 1px solid tomato;
+}
+
+.team-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-list-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.187;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: black;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.team-list-text {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.187;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: grey;
+  padding-bottom: 16px;
+}
+
+.social-list-icon {
+  width: 30px;
+  height: 30px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  .social-list-link:hover &,
+  .social-list-link:focus & {
+    fill: orangered;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+// @media screen and (min-width: 1024px) {
+// }
