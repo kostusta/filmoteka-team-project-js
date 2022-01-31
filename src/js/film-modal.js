@@ -1,47 +1,53 @@
-// import SimpleLightbox from "simplelightbox";
-// import 'simplelightbox/dist/simple-lightbox.min.css';
+import modalMovie from '../templates/modal_movie.hbs';
+import { fetchMovieById } from './api';
 
-// const card = new SimpleLightbox('.card', {
-// 	captionsData:'alt',
-// 	captionType:'alt',
-// 	captionDelay:200,
-// 	captionPosition:'bottom',
-//  });
+export const refs = {
+  libraryList: document.querySelector('.library__list'),
+  closeModalBtn: document.querySelector('.close-button'),
+  modal: document.querySelector('[data-modal]'),
+  modalContainer: document.querySelector('.card'),
+};
 
+function createModal(data) {
+  const markup = modalMovie(data);
 
-  export const refs = {
-   //  openModalBtn: document.querySelector('[data-modal-open]'),
+  refs.modalContainer.insertAdjacentHTML('beforeend', markup);
+  refs.modal.classList.remove('is-hidden');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', onEscapeClick);
+  refs.modal.addEventListener('click', backDropHandler);
+  const closeBtn = document.querySelector('.close-button');
+  closeBtn.addEventListener('click', closeBtnHandler);
+}
 
-	libraryList: document.querySelector(".library__list"),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
-  };
+refs.libraryList.addEventListener('click', onOpenModal);
 
-  refs.closeModalBtn.addEventListener('click', onCloseModal);
-  refs.libraryList.addEventListener('click', onOpenModal);
-  refs.modal.addEventListener("click", onBackDropClick);
+export function onOpenModal(e) {
+  refs.modalContainer.innerHTML = '';
+  const movieId = e.target.closest('li').dataset.id;
+  fetchMovieById(movieId).then(createModal);
+}
 
-
-    export function onOpenModal(e) {
-	    document.addEventListener("keydown", onEscapeClick);
-	      refs.modal.classList.remove('is-hidden');
+function backDropHandler(e) {
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+    return;
   }
+}
 
+function closeBtnHandler(e) {
+  onCloseModal();
+}
 
-  export function onCloseModal(e) {
-		document.removeEventListener("keydown", onEscapeClick);
-    refs.modal.classList.add('is-hidden');
+export function onCloseModal() {
+  refs.modal.classList.toggle('is-hidden');
+  document.removeEventListener('keydown', onEscapeClick);
+  refs.modal.removeEventListener('click', backDropHandler);
+  document.body.style.overflow = '';
+}
+
+function onEscapeClick(e) {
+  if (e.code === 'Escape') {
+    onCloseModal();
   }
-
-   function onEscapeClick(e) {
-	   if(e.code === 'Escape'){
-		    onCloseModal();
-	  }
-  }
-   function onBackDropClick(e) {
-	  if(e.currentTarget === e.target){
-		  onCloseModal();
-	  }
-  }
-
-
+}

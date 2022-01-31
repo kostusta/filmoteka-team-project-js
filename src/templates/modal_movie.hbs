@@ -1,0 +1,48 @@
+<button
+  type='button'
+  class='close-button js-close-menu'
+  data-modal-close
+  aria-expanded='false'
+  aria-controls='menu-container'
+>
+  <svg class='close-cross' width='25' height='25' viewBox='0 0 30 30'>
+    <path d='M8 8L22 22' stroke-width='2'></path>
+    <path d='M8 22L22 8' stroke-width='2'></path>
+  </svg>
+</button>
+<picture class='card__image'>
+  <img src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt='A FISTFUL OF LEAD' />
+</picture>
+
+<div class='card__wrapper'>
+  <h1 class='card__title'>{{original_title}}</h1>
+
+  <div class='card__description'>
+    <div class='card__description--1'>
+      <p class='card__label'>Vote / Votes</p>
+      <p class='card__label'>Popularity</p>
+      <p class='card__label'>Original Title</p>
+      <p class='card__label'>Genre</p>
+    </div>
+    <div class='card__description--2'>
+      <p class='card__rating'>
+        <span class='card__rating--orange'>{{vote_average}}</span>
+        <span>/</span>
+        <span class='card__rating--white'>{{vote_count}}</span>
+      </p>
+      <p class='card__rating card__rating--num'>{{popularity}}</p>
+      <p class='card__rating card__rating--text'>{{original_title}}</p>
+      <p class='card__rating card__rating--text'>{{genres.0.name}}</p>
+    </div>
+  </div>
+  <div class='card__about'>
+    <h2 class='card__subtitle'>About</h2>
+    <p class='card__text'>
+      {{overview}}
+    </p>
+  </div>
+  <div class='card__buttons'>
+    <button class='button button--orange card__btn' type='button'>add to Watched</button>
+    <button class='button button--transparent card__btn' type='button'>add to queue</button>
+  </div>
+</div>
