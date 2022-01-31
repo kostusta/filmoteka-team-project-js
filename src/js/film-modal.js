@@ -18,6 +18,11 @@ function createModal(data) {
   refs.modal.addEventListener('click', backDropHandler);
   const closeBtn = document.querySelector('.close-button');
   closeBtn.addEventListener('click', closeBtnHandler);
+  const addWatchedBtn = document.querySelector('[data-watched]');
+  addWatchedBtn.addEventListener('click', onAddWatchedBtn);
+    const addQueueBtn = document.querySelector('[data-queue]');
+  addQueueBtn.addEventListener('click', onAddQueueBtn);
+
 }
 
 refs.libraryList.addEventListener('click', onOpenModal);
@@ -50,4 +55,12 @@ function onEscapeClick(e) {
   if (e.code === 'Escape') {
     onCloseModal();
   }
+}
+
+function onAddWatchedBtn(e) {
+	console.log(e.target);
+}
+
+function onAddQueueBtn(e) {
+	console.log(e.target);
 }
