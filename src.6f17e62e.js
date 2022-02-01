@@ -87,4 +87,4 @@ const e=document.querySelectorAll(".team-modal-link"),t=document.querySelector("
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var e=require("./js/galery");require("./js/film-modal"),require("./js/team-modal"),(0,e.getColection)();
 },{"./sass/main.scss":"clu1","./js/galery":"qmFi","./js/film-modal":"v6dG","./js/team-modal":"SVxB"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/src.34765e02.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/src.6f17e62e.js.map
