@@ -75,4 +75,4 @@ module.exports=require("./lib/axios");
 },{"../templates/film-card.hbs":"fFoL","./api":"cZF8"}],"bcKP":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var s=require("./js/galery");(0,s.getColection)();
 },{"./sass/main.scss":"clu1","./js/galery":"qmFi"}]},{},["bcKP"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/my-library.713d8575.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/my-library.cb33fa77.js.map
