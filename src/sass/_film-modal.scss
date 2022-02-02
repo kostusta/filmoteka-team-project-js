@@ -136,13 +136,18 @@
 
 .card__btn {
   width: 112px;
-
+  box-shadow: 2px 3px #999;
+  outline: none;
   @media screen and (min-width: 768px) {
     width: 120px;
   }
   @media screen and (min-width: 1024px) {
     min-width: 136px;
     margin-right: 15px;
+  }
+  &:active {
+    box-shadow: 1px 1px #777;
+    transform: translateY(4px);
   }
 }
 
@@ -207,4 +212,18 @@
 
 .item {
   cursor: pointer;
+
+  .thumb {
+    overflow: hidden;
+
+    img {
+      transition: transform 300ms ease-in-out;
+      transform: scale(1);
+    }
+  }
+
+  &:hover img {
+    transition: transform 300ms ease-in-out;
+    transform: scale(1.1);
+  }
 }

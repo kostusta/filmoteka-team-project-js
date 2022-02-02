@@ -3,6 +3,16 @@ import modalMovie from '../templates/modal_movie.hbs';
 import { fetchMovieById } from './api';
 import { saveData, loadData } from "./storage";
 
+Notiflix.Notify.init({
+  width: '300px',
+  position: 'left-top', 
+  distance: '40px',
+  clickToClose: true,
+  fontSize: '22px',
+  cssAnimationStyle: 'from-left',
+  fontAwesomeIconSize: '30px',
+});
+
  const refs = {
   libraryList: document.querySelector('.library__list'),
   modal: document.querySelector('[data-modal]'),
@@ -42,15 +52,16 @@ function onAddWatchedBtn() {
 
   filmsIds.watchedFilmsIds.push(currentFilmId);
   saveData("filmsIds", filmsIds);
+  Notiflix.Notify.success('This movie has been added to WATCH');
 }
 
 function onAddQueueBtn() {
 
   filmsIds.queueFilmsIds.push(currentFilmId);
   saveData("filmsIds", filmsIds);
+    Notiflix.Notify.success('This movie has been added to QUEUE');
+
 }
-
-
 
 function backDropHandler(e) {
   if (e.currentTarget === e.target) {
