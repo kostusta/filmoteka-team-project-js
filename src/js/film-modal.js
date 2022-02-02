@@ -93,3 +93,4 @@ function addEventListeners() {
     const addQueueBtn = document.querySelector('[data-queue]');
   addQueueBtn.addEventListener('click', onAddQueueBtn);
 }
+
