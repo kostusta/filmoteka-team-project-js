@@ -3,6 +3,10 @@
   <p>
     {{original_title}}
     <br />
-    <span>Drama, Action | 2020</span>
+    <span>
+      {{#each genres}} {{name}} {{/each}}
+      |
+      {{release_date}}
+    </span>
   </p>
 </li>
