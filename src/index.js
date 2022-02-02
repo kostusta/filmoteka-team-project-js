@@ -5,4 +5,5 @@ import {} from './js/film-modal';
 
 import {} from './js/team-modal';
 
+
 getColection();
