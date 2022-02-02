@@ -1,16 +1,16 @@
 const refs = {
   home: document.querySelector('.site-nav__link'),
   library: document.querySelector('.nav-list__link'),
-   body: document.querySelector("body"),
+  body: document.querySelector('main'),
 };
 
-const headerHome = "<header>
+const headerHome = `<header>
   <include src="./partials/home-header.html"></include>
-</header > ";
+</header > `;
 
-const headerLibrary = "<header>
+const headerLibrary = `<header>
   <include src="./partials/my-library-header.html"></include>
-</header>";
+</header>`;
 
 refs.home.addEventListener('click', onHome);
 refs.library.addEventListener('click', onlibrary);
@@ -18,17 +18,11 @@ refs.library.addEventListener('click', onlibrary);
 function onHome(e) {
   e.preventDefault();
 
-  refs.body.insertAdjacentHTML("afterbegin", headerHome);
- 
+  refs.body.insertAdjacentHTML('beforebegin', headerHome);
 }
 
 function onlibrary(e) {
   e.preventDefault();
 
-   refs.body.insertAdjacentHTML("afterbegin", headerLibrary);
-
+  refs.body.insertAdjacentHTML('beforebegin', headerLibrary);
 }
-
-
-
-
