@@ -4,8 +4,12 @@
   // margin-right: auto;
   // padding-top: 0px;
   // padding-bottom: 0px;
+  width: 100%;
   background-color: $footer-bg-color;
   color: $footer-text-color;
+  .responsive {
+    max-width: 1024;
+  }
 }
 
 footer {
@@ -19,7 +23,12 @@ footer {
 }
 
 .underline {
+  color: $footer-text-color;
   text-decoration: underline;
+}
+
+.team-modal-link {
+  color: $footer-text-color;
 }
 
 @media screen and (min-width: 320px) {
