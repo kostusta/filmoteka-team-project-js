@@ -2,6 +2,7 @@ import Notiflix from 'notiflix';
 import modalMovie from '../templates/modal_movie.hbs';
 import { fetchMovieById } from './api';
 import { saveData, loadData } from "./storage";
+import axios from 'axios';
 
 Notiflix.Notify.init({
   width: '300px',
@@ -27,16 +28,39 @@ let filmsIds = {
 }
 
 
+// function onOpenModal(e) {
+//   if (loadData('filmsIds')) {
+//       filmsIds = loadData('filmsIds');
+//   }
+//   refs.modalContainer.innerHTML = '';
+//   currentFilmId = e.target.closest('li').dataset.id;
+
+//   fetchMovieById(currentFilmId).then(createModal);
+//   fetch().then((data) => {
+// 	  console.log(data.items[0].id.videoId);
+//   });
+
+// }
+
 function onOpenModal(e) {
   if (loadData('filmsIds')) {
       filmsIds = loadData('filmsIds');
   }
-
   refs.modalContainer.innerHTML = '';
   currentFilmId = e.target.closest('li').dataset.id;
 
-  fetchMovieById(currentFilmId).then(createModal);
+const videoId = fetch().then(console.log);
+console.log(videoId);
+
+  fetchMovieById(currentFilmId)
+  .then(createModal)
+  .then(fetch)
+  .then((data) => {
+	  console.log(data);
+  })
+  ;
 }
+
 
 function createModal(data) {
   const markup = modalMovie(data);
@@ -92,5 +116,15 @@ function addEventListeners() {
   addWatchedBtn.addEventListener('click', onAddWatchedBtn);
     const addQueueBtn = document.querySelector('[data-queue]');
   addQueueBtn.addEventListener('click', onAddQueueBtn);
+}
+
+
+// https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
+
+ async function fetch() {
+	 const API = 'AIzaSyCZe9rPo2hXxE-YtCc92VzPMTl5oX22cU8';
+  const url = `https://www.googleapis.com/youtube/v3/search?q=encanto+trailer+official+russian&key=${API}`;
+  const response = await axios.get(`${url}`);
+  return response.data.items[0].id.videoId;
 }
 
