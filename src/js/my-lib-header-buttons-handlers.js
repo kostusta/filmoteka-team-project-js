@@ -1,57 +1,17 @@
-import axios from 'axios';
 import filmCard from '../templates/film-card-my-library.hbs';
 import emptyLs from '../templates/my-library-empty-ls.hbs';
-import { addEventListeners } from './film-modal';
+
+import FilmsApi from './films-api';
+import LocalStorage from './local-storage-api';
 
 const refs = {
   libraryList: document.querySelector('.library__list'),
   watchedBtn: document.querySelector('.button-list > .button--orange'),
   queueBtn: document.querySelector('.button-list > .button--transparent'),
-  librarySection: document.querySelector('.library'),
 };
 
-class FilmsApi {
-  #url;
-  #apiKey;
-
-  constructor() {
-    this.#url = 'https://api.themoviedb.org/3/movie/';
-    this.#apiKey = '0a0eacc01c98f8ef04ac7ca82867ea4e';
-  }
-
-  fetchMovieById(id) {
-    return axios.get(`${this.#url}${id}?api_key=${this.#apiKey}`);
-  }
-}
-
-class Storage {
-  constructor() {}
-
-  getWatchedFilmsIds() {
-    try {
-      return localStorage.getItem('filmsIds') === null
-        ? []
-        : JSON.parse(localStorage.getItem('filmsIds')).watchedFilmsIds;
-    } catch {}
-  }
-
-  getqueueFilmsIds() {
-    try {
-      return localStorage.getItem('filmsIds') === null
-        ? []
-        : JSON.parse(localStorage.getItem('filmsIds')).queueFilmsIds;
-    } catch {}
-  }
-}
-
 const filmApi = new FilmsApi();
-const storage = new Storage();
-
-// console.log(
-//   filmApi.fetchMovieById(774825).then(r => {
-//     console.dir(r);
-//   }),
-// );
+const storage = new LocalStorage();
 
 function filmCardsMarkupCreate(data) {
   return data.map(item => filmCard(item.data)).join('');
@@ -65,11 +25,30 @@ function clearContainerMarkup(containerRef) {
   containerRef.innerHTML = '';
 }
 
+function watchedBtnClickActivation() {
+  refs.queueBtn.classList.remove('button--orange')
+  refs.queueBtn.classList.add('button--transparent')
+  refs.watchedBtn.classList.add('button--orange')
+  refs.watchedBtn.classList.remove('button--transparent')
+}
+
+function queueBtnClickActivation() {
+  refs.queueBtn.classList.add('button--orange')
+  refs.queueBtn.classList.remove('button--transparent')
+  refs.watchedBtn.classList.add('button--transparent')
+  refs.watchedBtn.classList.remove('button--orange')
+
+}
+
 function onWatchBtnClick() {
+  watchedBtnClickActivation()
+
+  clearContainerMarkup(refs.libraryList);
   if (storage.getWatchedFilmsIds().length === 0) {
-    clearContainerMarkup(refs.librarySection);
+    clearContainerMarkup(refs.libraryList);
     const markup = emptyLs();
-    renderMarkup(refs.librarySection, markup);
+    renderMarkup(refs.libraryList, markup);
+    document.querySelector('.empty-message').addClasslist('is-shown');
     return;
   }
 
@@ -78,9 +57,6 @@ function onWatchBtnClick() {
       return filmApi.fetchMovieById(filmId);
     }),
   )
-    .then(data => {
-      return data;
-    })
     .then(data => {
       return filmCardsMarkupCreate(data);
     })
@@ -92,10 +68,12 @@ function onWatchBtnClick() {
 }
 
 function onQueueBtnClick() {
+  queueBtnClickActivation()
+
   if (storage.getqueueFilmsIds().length === 0) {
-    clearContainerMarkup(refs.librarySection);
+    clearContainerMarkup(refs.libraryList);
     const markup = emptyLs();
-    renderMarkup(refs.librarySection, markup);
+    renderMarkup(refs.libraryList, markup);
     return;
   }
 
@@ -104,9 +82,6 @@ function onQueueBtnClick() {
       return filmApi.fetchMovieById(filmId);
     }),
   )
-    .then(data => {
-      return data;
-    })
     .then(data => {
       return filmCardsMarkupCreate(data);
     })
@@ -125,40 +100,8 @@ function start() {
 
 start();
 
-addEventListeners();
-
-// //******************************
-// function fetchMovieById(id) {
-//   const url = `https://api.themoviedb.org/3/movie/${id}`;
-//   const parmams = {
-//     api_key: '0a0eacc01c98f8ef04ac7ca82867ea4e',
-//   };
-//   return axios.get(`${url}?api_key=${parmams.api_key}`);
-// }
-
-// function getWatchedFilmsIds() {
-//   try {
-//     return localStorage.getItem('filmsIds') === null ? [] : JSON.parse(filmIds).watchedFilmsIds;
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// }
-
-// function getqueueFilmsIds() {
-//   try {
-//     return localStorage.getItem('filmsIds') === null ? [] : JSON.parse(filmIds).queueFilmsIds;
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// }
-
-// function renderFilmsCards(data) {
-//   const markup = data
-//     .map(item => {
-//       return filmCard(item.data);
-//     })
-//     .join('');
-
-//   refs.libraryList.innerHTML = '';
-//   refs.libraryList.insertAdjacentHTML('beforeend', markup);
-// }
+// console.log(
+//   filmApi.fetchMovieById(774825).then(r => {
+//     console.dir(r);
+//   }),
+// );
