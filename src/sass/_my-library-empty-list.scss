@@ -1,11 +1,30 @@
 .empty-message {
-  text-align: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.85)),
+    url(../images/my-library/empty-page-pic.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+
+  margin-top: 60px;
+  padding-top: 150px;
+  padding-left: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   &__text {
-    color: $main-text-color;
-    padding-bottom: 10px;
+    color: #ffea8f;
+    font-size: 20px;
+    padding-bottom: 30px;
+    max-width: 300px;
+
     &--accent {
-      font-size: 40px;
-      color: $accent-text-color;
+      font-size: 50px;
+      line-height: calc(35 / 30px);
+      font-weight: 900;
+      color: #ffffff;
     }
   }
 }

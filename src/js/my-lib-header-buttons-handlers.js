@@ -7,7 +7,7 @@ const refs = {
   libraryList: document.querySelector('.library__list'),
   watchedBtn: document.querySelector('.button-list > .button--orange'),
   queueBtn: document.querySelector('.button-list > .button--transparent'),
-  libraryContainer: document.querySelector('.library__container'),
+  librarySection: document.querySelector('.library'),
 };
 
 class FilmsApi {
@@ -73,9 +73,9 @@ function onWatchBtnClick() {
   )
     .then(data => {
       if (data.length === 0) {
-        clearContainerMarkup(refs.libraryContainer);
+        clearContainerMarkup(refs.librarySection);
         const markup = emptyLs();
-        renderMarkup(refs.libraryContainer, markup);
+        renderMarkup(refs.librarySection, markup);
       }
       return data;
     })
@@ -97,9 +97,9 @@ function onQueueBtnClick() {
   )
     .then(data => {
       if (data.length === 0) {
-        clearContainerMarkup(refs.libraryContainer);
+        clearContainerMarkup(refs.librarySection);
         const markup = emptyLs();
-        renderMarkup(refs.libraryContainer, markup);
+        renderMarkup(refs.librarySection, markup);
       }
       return data;
     })
