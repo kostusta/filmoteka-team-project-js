@@ -6,8 +6,8 @@ import LocalStorage from './local-storage-api';
 
 const refs = {
   libraryList: document.querySelector('.library__list'),
-  watchedBtn: document.querySelector('.button-list > .button--orange'),
-  queueBtn: document.querySelector('.button-list > .button--transparent'),
+  watchedBtn: document.querySelector('[data-watched-btn]'),
+  queueBtn: document.querySelector('[data-queue-btn]'),
 };
 
 const filmApi = new FilmsApi();
