@@ -1,0 +1,11 @@
+.empty-message {
+  text-align: center;
+  &__text {
+    color: $main-text-color;
+    padding-bottom: 10px;
+    &--accent {
+      font-size: 40px;
+      color: $accent-text-color;
+    }
+  }
+}

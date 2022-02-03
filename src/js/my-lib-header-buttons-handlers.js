@@ -1,10 +1,13 @@
 import axios from 'axios';
-import filmCard from '../templates/film-card.hbs';
+import filmCard from '../templates/film-card-my-library.hbs';
+import emptyLs from '../templates/my-library-empty-ls.hbs';
+import { addEventListeners } from './film-modal';
 
 const refs = {
   libraryList: document.querySelector('.library__list'),
   watchedBtn: document.querySelector('.button-list > .button--orange'),
   queueBtn: document.querySelector('.button-list > .button--transparent'),
+  libraryContainer: document.querySelector('.library__container'),
 };
 
 class FilmsApi {
@@ -44,14 +47,18 @@ class Storage {
 const filmApi = new FilmsApi();
 const storage = new Storage();
 
-console.log(filmApi.fetchMovieById(774825).then(r => {console.log(r.data)}));
+// console.log(
+//   filmApi.fetchMovieById(774825).then(r => {
+//     console.dir(r);
+//   }),
+// );
 
-function filmCardsMarcupCreate(data) {
+function filmCardsMarkupCreate(data) {
   return data.map(item => filmCard(item.data)).join('');
 }
 
-function renderFilmsCards(markup) {
-  refs.libraryList.insertAdjacentHTML('beforeend', markup);
+function renderMarkup(element, markup) {
+  element.insertAdjacentHTML('beforeend', markup);
 }
 
 function clearContainerMarkup(containerRef) {
@@ -65,13 +72,21 @@ function onWatchBtnClick() {
     }),
   )
     .then(data => {
+      if (data.length === 0) {
+        clearContainerMarkup(refs.libraryContainer);
+        const markup = emptyLs();
+        renderMarkup(refs.libraryContainer, markup);
+      }
+      return data;
+    })
+    .then(data => {
       clearContainerMarkup(refs.libraryList);
-      return filmCardsMarcupCreate(data);
+      return filmCardsMarkupCreate(data);
     })
     .then(markup => {
-      renderFilmsCards(markup);
+      renderMarkup(refs.libraryList, markup);
     })
-    .catch(error => console.error(error));
+    .catch();
 }
 
 function onQueueBtnClick() {
@@ -81,13 +96,21 @@ function onQueueBtnClick() {
     }),
   )
     .then(data => {
+      if (data.length === 0) {
+        clearContainerMarkup(refs.libraryContainer);
+        const markup = emptyLs();
+        renderMarkup(refs.libraryContainer, markup);
+      }
+      return data;
+    })
+    .then(data => {
       clearContainerMarkup(refs.libraryList);
-      return filmCardsMarcupCreate(data);
+      return filmCardsMarkupCreate(data);
     })
     .then(markup => {
-      renderFilmsCards(markup);
+      renderMarkup(refs.libraryList, markup);
     })
-    .catch(error => console.error(error));
+    .catch();
 }
 
 function start() {
@@ -97,6 +120,8 @@ function start() {
 }
 
 start();
+
+addEventListeners()
 
 // //******************************
 // function fetchMovieById(id) {
@@ -133,4 +158,3 @@ start();
 //   refs.libraryList.innerHTML = '';
 //   refs.libraryList.insertAdjacentHTML('beforeend', markup);
 // }
-
