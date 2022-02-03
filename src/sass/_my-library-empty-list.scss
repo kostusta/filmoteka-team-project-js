@@ -1,0 +1,38 @@
+.empty-message {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.85)),
+    url(../images/my-library/empty-page-pic.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+
+  text-transform: uppercase;
+
+  padding-top: 150px;
+  padding-left: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__text {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.02em;
+
+    max-width: 300px;
+
+    &--accent {
+      font-size: 50px;
+      line-height: 1.17;
+      font-weight: 900;
+      color: #ffffff;
+    }
+  }
+
+  &__text:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}

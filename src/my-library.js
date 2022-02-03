@@ -1,4 +1,8 @@
 import './sass/main.scss';
-import { getColection } from './js/galery';
+import './js/my-lib-header-buttons-handlers';
+import {} from './js/film-modal';
+// import {} from './templates/handlebars'
 
-getColection();
+// import { getColection } from './js/galery';
+
+// getColection();
