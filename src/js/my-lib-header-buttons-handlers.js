@@ -26,24 +26,22 @@ function clearContainerMarkup(containerRef) {
 }
 
 function watchedBtnClickActivation() {
-  refs.queueBtn.classList.remove('button--orange')
-  refs.queueBtn.classList.add('button--transparent')
-  refs.watchedBtn.classList.add('button--orange')
-  refs.watchedBtn.classList.remove('button--transparent')
+  refs.queueBtn.classList.remove('button--orange');
+  refs.queueBtn.classList.add('button--transparent');
+  refs.watchedBtn.classList.add('button--orange');
+  refs.watchedBtn.classList.remove('button--transparent');
 }
 
 function queueBtnClickActivation() {
-  refs.queueBtn.classList.add('button--orange')
-  refs.queueBtn.classList.remove('button--transparent')
-  refs.watchedBtn.classList.add('button--transparent')
-  refs.watchedBtn.classList.remove('button--orange')
-
+  refs.queueBtn.classList.add('button--orange');
+  refs.queueBtn.classList.remove('button--transparent');
+  refs.watchedBtn.classList.add('button--transparent');
+  refs.watchedBtn.classList.remove('button--orange');
 }
 
 function onWatchBtnClick() {
-  watchedBtnClickActivation()
+  watchedBtnClickActivation();
 
-  clearContainerMarkup(refs.libraryList);
   if (storage.getWatchedFilmsIds().length === 0) {
     clearContainerMarkup(refs.libraryList);
     const markup = emptyLs();
@@ -68,7 +66,8 @@ function onWatchBtnClick() {
 }
 
 function onQueueBtnClick() {
-  queueBtnClickActivation()
+
+  queueBtnClickActivation();
 
   if (storage.getqueueFilmsIds().length === 0) {
     clearContainerMarkup(refs.libraryList);
