@@ -21,26 +21,14 @@ Notiflix.Notify.init({
 };
 refs.libraryList.addEventListener('click', onOpenModal);
 
+
 let currentFilmId;
+let currentTrailerTitle;
 let filmsIds = {
   watchedFilmsIds: [],
   queueFilmsIds: []
 }
 
-
-// function onOpenModal(e) {
-//   if (loadData('filmsIds')) {
-//       filmsIds = loadData('filmsIds');
-//   }
-//   refs.modalContainer.innerHTML = '';
-//   currentFilmId = e.target.closest('li').dataset.id;
-
-//   fetchMovieById(currentFilmId).then(createModal);
-//   fetch().then((data) => {
-// 	  console.log(data.items[0].id.videoId);
-//   });
-
-// }
 
 function onOpenModal(e) {
   if (loadData('filmsIds')) {
@@ -49,17 +37,25 @@ function onOpenModal(e) {
   refs.modalContainer.innerHTML = '';
   currentFilmId = e.target.closest('li').dataset.id;
 
-const videoId = fetch().then(console.log);
-console.log(videoId);
-
-  fetchMovieById(currentFilmId)
-  .then(createModal)
-  .then(fetch)
-  .then((data) => {
-	  console.log(data);
-  })
-  ;
+  fetchMovieById(currentFilmId).then(createModal);
 }
+
+// function onOpenModal(e) {
+//   if (loadData('filmsIds')) {
+//       filmsIds = loadData('filmsIds');
+//   }
+//   refs.modalContainer.innerHTML = '';
+//   currentFilmId = e.target.closest('li').dataset.id;
+
+
+//   fetchMovieById(currentFilmId)
+//   .then(createModal)
+//   .then(fetch)
+//   .then((data) => {
+// 	  console.log(data);
+//   })
+//   ;
+// }
 
 
 function createModal(data) {
@@ -116,15 +112,34 @@ function addEventListeners() {
   addWatchedBtn.addEventListener('click', onAddWatchedBtn);
     const addQueueBtn = document.querySelector('[data-queue]');
   addQueueBtn.addEventListener('click', onAddQueueBtn);
+  const trailerBtn = document.querySelector('.trailer');
+  trailerBtn.addEventListener('click', onTrailerBtnClick);
+  const trailerVideo = document.querySelector('.trailer-video');
+
 }
 
 
-// https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
+//  Сайт, на котором нашел как получить ключ https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
 
- async function fetch() {
+ async function fetch(name) {
 	 const API = 'AIzaSyCZe9rPo2hXxE-YtCc92VzPMTl5oX22cU8';
-  const url = `https://www.googleapis.com/youtube/v3/search?q=encanto+trailer+official+russian&key=${API}`;
+  const url = `https://www.googleapis.com/youtube/v3/search?q=${name}+trailer+official+russian&key=${API}`;
   const response = await axios.get(`${url}`);
-  return response.data.items[0].id.videoId;
+   const trailerId =  response.data.items[0].id.videoId;
+   return trailerId;
+ }
+
+function onTrailerBtnClick(e) {
+  const trailer = e.target.parentNode.nextElementSibling;
+  currentTrailerTitle = trailer.dataset.title;
+   fetch(currentTrailerTitle).then(trailerId => {
+trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
+  });
+  
+   
+
+  e.target.parentNode.nextElementSibling.classList.add('active');
+
+  
 }
 

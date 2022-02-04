@@ -1,6 +1,7 @@
 // Стили для film-modal partial
 
 .card {
+  position: relative;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -220,6 +221,7 @@
   background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .trailer::before {
   content: '';
@@ -231,6 +233,17 @@
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 15px solid #fff;
+}
+.trailer-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.trailer-video.active {
+  display: block;
 }
 
 // .item {

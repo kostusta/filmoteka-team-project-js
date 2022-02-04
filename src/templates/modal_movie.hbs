@@ -11,10 +11,11 @@
   </svg>
 </button>
 <picture class='card__image'>
-  <img src='https://image.tmdb.org/t/p/w400{{poster_path}}' alt='A FISTFUL OF LEAD' />
-  <a class="trailer" href="https://www.youtube.com/results?search_query={{original_title}}+official+trailer" target="_blank" rel="noopener noreferrer">TRAILER</a>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/{{videoId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <img src='https://image.tmdb.org/t/p/w400{{poster_path}}' alt={{original_title}}/>
+  <button type="button" class="trailer">TRAILER</button>
 </picture>
+ <iframe class="trailer-video" data-title='{{original_title}}' src="https://www.youtube.com/embed/{{videoId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 <div class='card__wrapper'>
   <h1 class='card__title'>{{original_title}}</h1>
