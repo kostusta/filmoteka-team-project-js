@@ -7,14 +7,12 @@
   width: 100%;
   background-color: $footer-bg-color;
   color: $footer-text-color;
-  .responsive {
-    max-width: 1024;
-  }
 }
 
 footer {
   // margin-top: 60px;
   color: $footer-text-color;
+  max-width: 1024;
 }
 
 .footer__image {
@@ -67,5 +65,8 @@ footer {
     font-size: 16px;
     font-weight: 400;
     margin-top: 60px;
+  }
+  .container-footer {
+    max-width: 1024px;
   }
 }
