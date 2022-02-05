@@ -94,4 +94,4 @@ const e=document.querySelectorAll(".team-modal-link"),t=document.querySelector("
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/pagination"),require("./js/film-modal"),require("./js/team-modal");
 },{"./sass/main.scss":"clu1","./js/pagination":"o8lo","./js/film-modal":"v6dG","./js/team-modal":"SVxB"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/src.fb47daaf.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/src.bc80de29.js.map

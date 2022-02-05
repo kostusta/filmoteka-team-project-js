@@ -11,4 +11,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../templates/film-card.hbs":"fFoL"}],"bcKP":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var s=require("./js/galery");(0,s.getColection)();
 },{"./sass/main.scss":"clu1","./js/galery":"qmFi"}]},{},["bcKP"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/my-library.cb30c8c3.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/my-library.be7817f8.js.map
