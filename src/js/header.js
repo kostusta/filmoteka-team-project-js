@@ -2,7 +2,7 @@ import {
   clearContainerMarkup,
   filmCardsMarkupCreate,
   renderMarkup,
-} from './my-lib-header-buttons-handlers';
+} from './header-buttons-handlers';
 import LocalStorage from './local-storage-api';
 import FilmsApi from './films-api';
 
