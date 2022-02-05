@@ -30,8 +30,13 @@ footer {
 }
 
 @media screen and (min-width: 320px) {
-  .page__footer {
+  .container-footer {
     margin-top: 40px;
+    padding-top: 29px;
+    padding-bottom: 29px;
+  }
+  .page__footer {
+    // margin-top: 40px;
     font-size: 14px;
     font-weight: 400;
   }
@@ -40,7 +45,7 @@ footer {
     justify-content: center;
 
     margin: 0px;
-    padding-top: 29px;
+    // padding-top: 29px;
     padding-bottom: 10px;
   }
   .developers {
@@ -49,11 +54,15 @@ footer {
 
     margin: 0px;
     // padding: 30px;
-    padding-bottom: 29px;
+    // padding-bottom: 29px;
   }
 }
 
 @media screen and (min-width: 768px) {
+  .container-footer {
+    margin-top: 60px;
+    max-width: 1024px;
+  }
   .page__footer {
     display: flex;
     justify-content: center;
@@ -64,9 +73,9 @@ footer {
 
     font-size: 16px;
     font-weight: 400;
-    margin-top: 60px;
+    // margin-top: 60px;
   }
-  .container-footer {
-    max-width: 1024px;
+  .copyright {
+    padding-bottom: 0px;
   }
 }
