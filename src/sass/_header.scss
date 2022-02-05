@@ -156,136 +156,141 @@
     border: 1px solid $header-text-color;
   }
 
-  background-image: radial-gradient(circle at center, #00000000, #000103 80%),
-    url(../images/header-home/mobile-home-header.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    background-image: radial-gradient(circle at center, #00000000, #000103 80%),
-      url(../images/header-home/mobile-home-header2x.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  &-form {
+    display: flex;
+    justify-content: center;
   }
 
-  @media screen and (min-width: 768px) {
+  &__input {
+    height: 20px;
+
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $footer-bg-color;
+    border-radius: 0px;
+
+    color: $main-bg-color;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    @media screen and (min-width: 320px) {
+      width: 280px;
+    }
+    @media screen and (min-width: 768px) {
+      width: 336px;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 336px;
+    }
+
+    &::placeholder {
+      color: $main-bg-color;
+
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+
+  &-home {
     background-image: radial-gradient(circle at center, #00000000, #000103 80%),
-      url(../images/header-home/tablet-home-header.jpg);
+      url(../images/header-home/mobile-home-header.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
       background-image: radial-gradient(circle at center, #00000000, #000103 80%),
-        url(../images/header-home/tablet-home-header2x.jpg);
+        url(../images/header-home/mobile-home-header2x.jpg);
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
     }
-  }
 
-  @media screen and (min-width: 1024px) {
-    background-image: radial-gradient(circle at center, #00000000, #000103 80%),
-      url(../images/header-home/desktop-home-header.jpg);
-    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    @media screen and (min-width: 768px) {
       background-image: radial-gradient(circle at center, #00000000, #000103 80%),
-        url(../images/header-home/desktop-home-header2x.jpg);
+        url(../images/header-home/tablet-home-header.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+        background-image: radial-gradient(circle at center, #00000000, #000103 80%),
+          url(../images/header-home/tablet-home-header2x.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      background-image: radial-gradient(circle at center, #00000000, #000103 80%),
+        url(../images/header-home/desktop-home-header.jpg);
+      @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+        background-image: radial-gradient(circle at center, #00000000, #000103 80%),
+          url(../images/header-home/desktop-home-header2x.jpg);
+      }
     }
   }
-}
 
-.header-home {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/header-lib/header-mob@1x.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  &-lib {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/header-lib/header-mob@2x.png);
-  }
-  @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/header-lib/header-tab@1x.png);
-    @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+      url(../images/header-lib/header-mob@1x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
       background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url(../images/header-lib/header-tab@2x.png);
+        url(../images/header-lib/header-mob@2x.png);
     }
-  }
-
-  @media screen and (min-width: 1024px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/header-lib/header-desk@1x.png);
-    @media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+    @media screen and (min-width: 768px) {
       background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url(../images/header-lib/header-desk@2x.png);
+        url(../images/header-lib/header-tab@1x.png);
+      @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+          url(../images/header-lib/header-tab@2x.png);
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url(../images/header-lib/header-desk@1x.png);
+      @media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+          url(../images/header-lib/header-desk@2x.png);
+      }
     }
   }
 }
 
-.header-form {
-  display: flex;
-  justify-content: center;
-}
-
-.search-position {
-  position: relative;
-}
-
-.header__input {
-  height: 20px;
-
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid $footer-bg-color;
-  border-radius: 0px;
-
-  color: $main-bg-color;
-
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 16px;
-
-  @media screen and (min-width: 320px) {
-    width: 280px;
+.search{
+  &-position {
+    position: relative;
   }
-  @media screen and (min-width: 768px) {
-    width: 336px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 336px;
+  
+  &-button {
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0;
+    margin: 0;
+  
+    position: absolute;
+    top: 12.5%;
+    right: 0;
   }
 }
 
-.header__input::placeholder {
-  color: $main-bg-color;
-
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-}
-
-.header__input:focus {
-  outline: none;
-}
-
-.header__input:focus::placeholder {
-  color: transparent;
-}
-
-.search-button {
-  background-color: transparent;
-  border-color: transparent;
-  padding: 0;
-  margin: 0;
-
-  position: absolute;
-  top: 12.5%;
-  right: 0;
-}
