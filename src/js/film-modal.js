@@ -1,9 +1,9 @@
 import Notiflix from 'notiflix';
 import modalMovie from '../templates/modal_movie.hbs';
 import { fetchMovieById } from './api';
-import { saveData, loadData } from "./storage";
+import { saveData, loadData } from './storage';
 
- const refs = {
+const refs = {
   libraryList: document.querySelector('.library__list'),
   modal: document.querySelector('[data-modal]'),
   modalContainer: document.querySelector('.card'),
@@ -13,13 +13,12 @@ refs.libraryList.addEventListener('click', onOpenModal);
 let currentFilmId;
 let filmsIds = {
   watchedFilmsIds: [],
-  queueFilmsIds: []
-}
-
+  queueFilmsIds: [],
+};
 
 function onOpenModal(e) {
   if (loadData('filmsIds')) {
-      filmsIds = loadData('filmsIds');
+    filmsIds = loadData('filmsIds');
   }
 
   refs.modalContainer.innerHTML = '';
@@ -39,18 +38,22 @@ function createModal(data) {
 }
 
 function onAddWatchedBtn() {
+  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
+    return;
+  }
 
   filmsIds.watchedFilmsIds.push(currentFilmId);
-  saveData("filmsIds", filmsIds);
+  saveData('filmsIds', filmsIds);
 }
 
 function onAddQueueBtn() {
+  if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
+    return;
+  }
 
   filmsIds.queueFilmsIds.push(currentFilmId);
-  saveData("filmsIds", filmsIds);
+  saveData('filmsIds', filmsIds);
 }
-
-
 
 function backDropHandler(e) {
   if (e.currentTarget === e.target) {
@@ -59,7 +62,7 @@ function backDropHandler(e) {
   }
 }
 
- function onCloseModal() {
+function onCloseModal() {
   refs.modal.classList.toggle('is-hidden');
   document.removeEventListener('keydown', onEscapeClick);
   refs.modal.removeEventListener('click', backDropHandler);
@@ -73,12 +76,12 @@ function onEscapeClick(e) {
 }
 
 function addEventListeners() {
-    document.addEventListener('keydown', onEscapeClick);
+  document.addEventListener('keydown', onEscapeClick);
   refs.modal.addEventListener('click', backDropHandler);
   const closeBtn = document.querySelector('.close-button');
   closeBtn.addEventListener('click', onCloseModal);
   const addWatchedBtn = document.querySelector('[data-watched]');
   addWatchedBtn.addEventListener('click', onAddWatchedBtn);
-    const addQueueBtn = document.querySelector('[data-queue]');
+  const addQueueBtn = document.querySelector('[data-queue]');
   addQueueBtn.addEventListener('click', onAddQueueBtn);
 }

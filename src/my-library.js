@@ -1,4 +1,3 @@
 import './sass/main.scss';
-import { getColection } from './js/galery';
-
-getColection();
+import './js/my-lib-header-buttons-handlers'
+import './js/film-modal'
