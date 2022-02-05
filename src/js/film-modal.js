@@ -3,7 +3,7 @@ import modalMovie from '../templates/modal_movie.hbs';
 import { fetchMovieById } from './api';
 import { saveData, loadData } from "./storage";
 
- const refs = {
+const refs = {
   libraryList: document.querySelector('.library__list'),
   modal: document.querySelector('[data-modal]'),
   modalContainer: document.querySelector('.card'),
@@ -59,7 +59,7 @@ function backDropHandler(e) {
   }
 }
 
- function onCloseModal() {
+function onCloseModal() {
   refs.modal.classList.toggle('is-hidden');
   document.removeEventListener('keydown', onEscapeClick);
   refs.modal.removeEventListener('click', backDropHandler);
