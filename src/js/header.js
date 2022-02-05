@@ -1,31 +1,65 @@
+import { getColection } from './galery';
+import {
+  clearContainerMarkup,
+  filmCardsMarkupCreate,
+  renderMarkup,
+} from './my-lib-header-buttons-handler';
+import LocalStorage from './local-storage-api';
+import FilmsApi from './films-api';
+
+const filmApi = new FilmsApi();
+const storage = new LocalStorage();
+
 const refs = {
   header: document.querySelector('.header'),
   homeBtn: document.querySelector('[data-home-btn]'),
   libBtn: document.querySelector('[data-lib-btn]'),
   form: document.querySelector('.header-form'),
   btnList: document.querySelector('.button-list'),
+  galery: document.querySelector('.library__list'),
+  headerIcon: document.querySelector('.header__home-link'),
 };
 
 refs.homeBtn.addEventListener('click', onHomeBtnClick);
 refs.libBtn.addEventListener('click', onLibBtnClick);
+refs.headerIcon.addEventListener('click', onHomeBtnClick);
 
 function onHomeBtnClick(event) {
   event.preventDefault();
+
+  clearContainerMarkup(refs.galery);
+  getColection();
 
   refs.header.classList.add('header-home');
   refs.header.classList.remove('header-lib');
   refs.form.classList.remove('visually-hidden');
   refs.btnList.classList.add('visually-hidden');
-  refs.homeBtn.classList.add('site-nav__link--current')
-  refs.libBtn.classList.remove('site-nav__link--current')
+  refs.homeBtn.classList.add('site-nav__link--current');
+  refs.libBtn.classList.remove('site-nav__link--current');
 }
 function onLibBtnClick(event) {
   event.preventDefault();
+
+  clearContainerMarkup(refs.galery);
 
   refs.header.classList.remove('header-home');
   refs.header.classList.add('header-lib');
   refs.form.classList.add('visually-hidden');
   refs.btnList.classList.remove('visually-hidden');
-  refs.libBtn.classList.add('site-nav__link--current')
-  refs.homeBtn.classList.remove('site-nav__link--current')
+  refs.libBtn.classList.add('site-nav__link--current');
+  refs.homeBtn.classList.remove('site-nav__link--current');
+
+  Promise.all(
+    storage.getWatchedFilmsIds().map(filmId => {
+      return filmApi.fetchMovieById(filmId);
+    }),
+  )
+    .then(data => {
+      return filmCardsMarkupCreate(data);
+    })
+    .then(markup => {
+      clearContainerMarkup(refs.galery);
+      renderMarkup(refs.galery, markup);
+    })
+    .catch();
 }
