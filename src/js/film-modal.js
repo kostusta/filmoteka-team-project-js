@@ -119,7 +119,7 @@ function addEventListeners() {
 }
 
 
-//  Сайт, на котором нашел как получить ключ https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
+//  Kак получить ключ https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
 
  async function fetch(name) {
 	 const API = 'AIzaSyCZe9rPo2hXxE-YtCc92VzPMTl5oX22cU8';
@@ -135,11 +135,6 @@ function onTrailerBtnClick(e) {
    fetch(currentTrailerTitle).then(trailerId => {
 trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
   });
-  
-   
-
   e.target.parentNode.nextElementSibling.classList.add('active');
-
-  
 }
 
