@@ -10,10 +10,10 @@
     <path d='M8 22L22 8' stroke-width='2'></path>
   </svg>
 </button>
-<picture class='card__image'>
-  <img src='https://image.tmdb.org/t/p/w400{{poster_path}}' alt={{original_title}}/>
+<div class="card__thumb">
+	<img src='https://image.tmdb.org/t/p/w400{{poster_path}}' alt={{original_title}}/>
   <button type="button" class="trailer">TRAILER</button>
-</picture>
+</div>
  {{!-- <iframe class="trailer-video" data-title='{{original_title}}' src="https://www.youtube.com/embed/{{videoId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
  <iframe class="trailer-video" data-title='dune' src="https://www.youtube.com/embed/Jd9L79koFkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
