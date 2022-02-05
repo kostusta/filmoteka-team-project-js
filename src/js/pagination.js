@@ -16,15 +16,18 @@ const pagination = new Pagination(container, {
 
 const page = pagination.getCurrentPage();
 
-fetchMovies(page).then(data => {
+export function fetch() {fetchMovies(page).then(data => {
   pagination.reset(data.total_results);
   renderGalery(data);
   // console.log('Pagination render card', data.results); // масив фильмов
-});
+});}
 
-pagination.on('afterMove', event => {
+fetch()
+
+
+export function paginationOn(){pagination.on('afterMove', event => {
   const currentPage = event.page;
-  console.log('Текущая страница: ', currentPage);
+  // console.log('Текущая страница: ', currentPage);
   fetchMovies(currentPage).then(data => {
     renderGalery(data);
     // console.log('Масив фильмов', data.results);
@@ -34,4 +37,7 @@ pagination.on('afterMove', event => {
       behavior: 'smooth',
     });
   });
-});
+});}
+
+paginationOn()
+

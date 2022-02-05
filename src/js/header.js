@@ -1,11 +1,12 @@
-import { getColection } from './galery';
 import {
   clearContainerMarkup,
   filmCardsMarkupCreate,
   renderMarkup,
-} from './my-lib-header-buttons-handler';
+} from './my-lib-header-buttons-handlers';
 import LocalStorage from './local-storage-api';
 import FilmsApi from './films-api';
+
+import { paginationOn, fetch } from './pagination';
 
 const filmApi = new FilmsApi();
 const storage = new LocalStorage();
@@ -18,6 +19,7 @@ const refs = {
   btnList: document.querySelector('.button-list'),
   galery: document.querySelector('.library__list'),
   headerIcon: document.querySelector('.header__home-link'),
+  pagination: document.getElementById('tui-pagination-container')
 };
 
 refs.homeBtn.addEventListener('click', onHomeBtnClick);
@@ -26,9 +28,10 @@ refs.headerIcon.addEventListener('click', onHomeBtnClick);
 
 function onHomeBtnClick(event) {
   event.preventDefault();
-
   clearContainerMarkup(refs.galery);
-  getColection();
+
+  paginationOn();
+  fetch();
 
   refs.header.classList.add('header-home');
   refs.header.classList.remove('header-lib');
@@ -36,10 +39,11 @@ function onHomeBtnClick(event) {
   refs.btnList.classList.add('visually-hidden');
   refs.homeBtn.classList.add('site-nav__link--current');
   refs.libBtn.classList.remove('site-nav__link--current');
+  refs.pagination.classList.remove('visually-hidden')
 }
+
 function onLibBtnClick(event) {
   event.preventDefault();
-
   clearContainerMarkup(refs.galery);
 
   refs.header.classList.remove('header-home');
@@ -48,6 +52,7 @@ function onLibBtnClick(event) {
   refs.btnList.classList.remove('visually-hidden');
   refs.libBtn.classList.add('site-nav__link--current');
   refs.homeBtn.classList.remove('site-nav__link--current');
+  refs.pagination.classList.add('visually-hidden')
 
   Promise.all(
     storage.getWatchedFilmsIds().map(filmId => {
