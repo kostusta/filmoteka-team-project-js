@@ -1,0 +1,44 @@
+<div class="header header-home">
+  <section class="container">
+    <nav class="header-nav">
+      <a class="header__home-link" href="#" lang="en" target="_self">
+        <svg class="header__home-link-icon" id="header-home-link" width="24" height="24">
+          <use href="./images/symbol-defs.svg#icon-logo"></use>
+        </svg>
+        <span class="header__home-link-text">Filmoteka</span>
+      </a>
+      <ul class="site-nav">
+        <li class="site-nav__item">
+          <a class="site-nav__link site-nav__link--current" href="#" target="_self" data-home-btn
+            >home</a
+          >
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="#" target="_self" data-lib-btn>my library</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-form">
+      <form class="search-form">
+        <div class="search-position">
+          <input type="text" name="searchQuery" placeholder="Поиск фильмов" class="header__input" />
+          <button type="submit" class="search-button">
+            <svg width="12" height="12" class="search-icon">
+              <use href="./images/header-home/header-icon-search.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="button-list visually-hidden">
+      <button class="button button--orange" type="button" data-watched-btn>watched</button>
+      <button class="button button--transparent" type="button" data-queue-btn>queue</button>
+    </div>
+
+    <p class="error-message visually-hidden">
+      Search result not successful. Enter the correct movie name and try again.
+    </p>
+  </section>
+</div>
