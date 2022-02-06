@@ -2,7 +2,15 @@ import { refs } from './galery';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import 'notiflix/dist/notiflix-3.2.2.min.css';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, connectDatabaseEmulator } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  child,
+  onValue,
+  connectDatabaseEmulator,
+} from 'firebase/database';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -11,6 +19,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
+import { async } from '@firebase/util';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,7 +33,7 @@ const firebaseConfig = {
 
 // // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const database = getDatabase(
   app,
   'https://my-movie-library-cb4ea-default-rtdb.europe-west1.firebasedatabase.app',
@@ -98,16 +107,37 @@ const logOut = async () => {
 monitorAuthState();
 
 // Запись даных в firebase
-export function writeUserData() {
+export function writeUserData(user, filmsIds) {
   //Текущий пользователь, если пользователь не вошел равен null
-  const user = auth.currentUser;
   if (!user) {
     Notify.warning('Вы не выполнили вход.');
     return;
   }
 
-  set(ref(database, 'users/' + user.uid), {
-    watchedFilmsIds: [100],
-    queueFilmsIds: [100],
-  });
+  try {
+    set(ref(database, 'users/' + user.uid), filmsIds);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Чтение даных с firebase, возвращает промис
+// readUserData(user).then(data => console.log(data.val().queueFilmsIds));
+export async function readUserData(user) {
+  if (!user) {
+    Notify.warning('Вы не выполнили вход. readUserData');
+    return;
+  }
+  const dbRef = ref(database);
+
+  try {
+    const snapshot = await get(child(dbRef, `users/${user.uid}`));
+    if (snapshot.exists()) {
+      return snapshot;
+    } else {
+      console.log('No data available');
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }

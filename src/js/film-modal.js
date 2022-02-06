@@ -1,7 +1,11 @@
 import Notiflix from 'notiflix';
 import modalMovie from '../templates/modal_movie.hbs';
+import { onAuthStateChanged } from 'firebase/auth';
 import { fetchMovieById } from './api';
 import { saveData, loadData } from './storage';
+import { writeUserData } from './auth';
+import { readUserData } from './auth';
+import { auth } from './auth';
 
 const refs = {
   libraryList: document.querySelector('.library__list'),
@@ -15,6 +19,19 @@ let filmsIds = {
   watchedFilmsIds: [],
   queueFilmsIds: [],
 };
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    readUserData(user)
+      .then(data => {
+        filmsIds.watchedFilmsIds = data.val().watchedFilmsIds;
+        filmsIds.queueFilmsIds = data.val().queueFilmsIds;
+        console.log(filmsIds);
+        saveData('filmsIds', filmsIds);
+      })
+      .catch(e => console.log(e));
+  }
+});
 
 function onOpenModal(e) {
   if (loadData('filmsIds')) {
@@ -42,6 +59,14 @@ function onAddWatchedBtn() {
     return;
   }
 
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      writeUserData(user, filmsIds);
+    } else {
+      console.log('вы не вошли');
+    }
+  });
+
   filmsIds.watchedFilmsIds.push(currentFilmId);
   saveData('filmsIds', filmsIds);
 }
@@ -50,6 +75,14 @@ function onAddQueueBtn() {
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
     return;
   }
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      writeUserData(user, filmsIds);
+    } else {
+      console.log('вы не вошли');
+    }
+  });
 
   filmsIds.queueFilmsIds.push(currentFilmId);
   saveData('filmsIds', filmsIds);
