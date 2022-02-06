@@ -1,48 +1,62 @@
-import card from '../templates/film-card.hbs';
-import API from './api';
-import searchErr from './search-error';
-import {renderGalery} from "./galery"
-import { fetch } from './pagination';
+import Api from "./apiMoviesSearch"
+import filmCard from "../templates/movie-card.hbs"
 
-export let searchBy = '';
-const api = new API();
-const searchForm = document.querySelector(".search-form")
-const paginationBox = document.getElementById('tui-pagination-container');
-const galleryList = document.querySelector(".library__list")
-searchForm.addEventListener('submit', onSearchInput);
+const api = new Api();
 
-export async function onSearchInput(e) {
-  e.preventDefault();
-  paginationBox.classList.add('visually-hidden');
-  const value = e.currentTarget.elements.searchQuery.value;
-  if (!value.trim()) return;
-  initialReset();
-  api.setQuery(value);
+const cardList = document.querySelector(".library__list")
+const headerError = document.querySelector(".error-message")
+const headerFormSubmitBtn = document.querySelector(".search-button")
+const headerFormInput = document.querySelector(".header__input")
 
-  try {
-    const data = await api.fetchMovieSearchQuery();
-    console.log(data);
-    const result = await data.results;
-      const markup = await renderGalery(result);
-    if (!result.length) {
-      searchErr(true);
+headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 
-      return;
-    }
-    if (data.total_results > 20) {
-      fetch(data.total_results);
-      paginationBox.classList.remove('visually-hidden');
-    }
-    galleryList.insertAdjacentHTML('beforeend', card(markup));
-    searchBy = 'query';
-  } catch (error) {
-    console.error(error);
+function onSearchMovies(event) {
+  api.query = headerFormInput.value.trim();
+  api.resetPage();
+  event.preventDefault();
+  if (api.query === '') {
+    event.preventDefault();
+    headerError.classList.remove('visually-hidden', 'none');
+    setTimeout(() => {
+      headerError.classList.add('visually-hidden', 'none');
+    }, 3000);
+
+    return;
+  }
+
+  if (api.query !== '') {
+    api.fetchSearchMovies()
+      .then((movies) => {
+        if (movies.results.length < 1) {
+          headerError.classList.remove('visually-hidden', 'none');
+          setTimeout(() => {
+            headerError.classList.add('visually-hidden', 'none');
+          }, 3000);
+          cleanInput()
+        
+          return;
+        };
+        if (movies.results.length > 1) {
+
+          headerError.classList.add('visually-hidden', 'none');
+          clearMovieCardContainer();
+          appendMovieCardMarkup(movies.results);
+          cleanInput()
+        
+        }
+
+      })
+      .catch(err => console.log(err))
   }
 }
-
-function initialReset() {
-  galleryList.innerHTML = '';
-  searchErr(false);
-  api.setPage(1);
+function cleanInput() {
+  headerFormInput.value = '';
+}
+function clearMovieCardContainer() {
+  cardList.innerHTML = '';
 }
 
+ async function appendMovieCardMarkup(data) {
+  const markup = await filmCard(data);
+  cardList.innerHTML = markup;
+}
