@@ -144,4 +144,4 @@ var e=require("process");Object.defineProperty(exports,"__esModule",{value:!0}),
 },{"./galery":"qmFi","notiflix/build/notiflix-notify-aio":"MeeU","notiflix/dist/notiflix-3.2.2.min.css":"UYQs","firebase/app":"OJEJ","firebase/database":"Uuoh","firebase/auth":"zKjx"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/header"),require("./js/dark-theme-toggle"),require("./js/on-search-query"),require("./js/search-error"),require("./js/header-buttons-handlers"),require("./js/pagination"),require("./js/ontop-btn"),require("./js/film-modal"),require("./js/team-modal"),require("./js/auth");
 },{"./sass/main.scss":"clu1","./js/header":"cGsR","./js/dark-theme-toggle":"ffe9","./js/on-search-query":"Fwx3","./js/search-error":"l72Y","./js/header-buttons-handlers":"zE6z","./js/pagination":"o8lo","./js/ontop-btn":"zqxi","./js/film-modal":"v6dG","./js/team-modal":"SVxB","./js/auth":"zSTK"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/src.ce6cedc3.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/src.f501517f.js.map
