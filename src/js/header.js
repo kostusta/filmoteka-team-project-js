@@ -1,20 +1,9 @@
+import { refs } from './common-references';
 import {
   clearContainerMarkup,
   onWatchBtnClick,
 } from './header-buttons-handlers';
-
 import { paginationOn, fetch } from './pagination';
-
-const refs = {
-  header: document.querySelector('.header'),
-  homeBtn: document.querySelector('[data-home-btn]'),
-  libBtn: document.querySelector('[data-lib-btn]'),
-  form: document.querySelector('.header-form'),
-  btnList: document.querySelector('.button-list'),
-  galery: document.querySelector('.library__list'),
-  headerIcon: document.querySelector('.header__home-link'),
-  pagination: document.getElementById('tui-pagination-container')
-};
 
 refs.homeBtn.addEventListener('click', onHomeBtnClick);
 refs.libBtn.addEventListener('click', onLibBtnClick);

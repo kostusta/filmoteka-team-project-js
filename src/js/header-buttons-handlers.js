@@ -1,14 +1,9 @@
+import { refs } from './common-references';
 import filmCard from '../templates/film-card-my-library.hbs';
 import emptyLs from '../templates/my-library-empty-ls.hbs';
 
 import FilmsApi from './films-api';
 import LocalStorage from './local-storage-api';
-
-const refs = {
-  libraryList: document.querySelector('.library__list'),
-  watchedBtn: document.querySelector('[data-watched-btn]'),
-  queueBtn: document.querySelector('[data-queue-btn]'),
-};
 
 const filmApi = new FilmsApi();
 const storage = new LocalStorage();
@@ -94,7 +89,6 @@ function onQueueBtnClick() {
 function start() {
   refs.watchedBtn.addEventListener('click', onWatchBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
-  // window.addEventListener('load', onWatchBtnClick);
 }
 
 start();

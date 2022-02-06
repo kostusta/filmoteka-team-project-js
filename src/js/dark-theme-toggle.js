@@ -1,15 +1,5 @@
+import { refs } from './common-references';
 import LocalStorage from './local-storage-api';
-
-const refs = {
-  checkbox: document.querySelector('[data-checkbox]'),
-  toggleControl: document.querySelector('.toggle__control'),
-  toggleTrack: document.querySelector('.toggle__track'),
-  toggle: document.querySelector('.toggle'),
-  body: document.querySelector('body'),
-  footer: document.querySelector('footer .container'),
-  footerLink: document.querySelector('.team-modal-link'),
-  footerLinkUnderline: document.querySelector('.underline'),
-};
 
 refs.toggle.addEventListener('click', onToggleClick);
 
@@ -48,11 +38,9 @@ export function darkThemeOn() {
 function userThemeSetingsDetection() {
   window.addEventListener('load', () => {
     if (JSON.parse(localStorage.getItem('dark-theme'))) {
-      darkThemeOn()
+      darkThemeOn();
     }
   });
 }
 
-userThemeSetingsDetection()
-
-
+userThemeSetingsDetection();
