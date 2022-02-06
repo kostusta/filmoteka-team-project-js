@@ -14,7 +14,7 @@ Notiflix.Notify.init({
   fontAwesomeIconSize: '30px',
 });
 
- const refs = {
+const refs = {
   libraryList: document.querySelector('.library__list'),
   modal: document.querySelector('[data-modal]'),
   modalContainer: document.querySelector('.card'),
@@ -26,13 +26,12 @@ let currentFilmId;
 let currentTrailerTitle;
 let filmsIds = {
   watchedFilmsIds: [],
-  queueFilmsIds: []
-}
-
+  queueFilmsIds: [],
+};
 
 function onOpenModal(e) {
   if (loadData('filmsIds')) {
-      filmsIds = loadData('filmsIds');
+    filmsIds = loadData('filmsIds');
   }
   refs.modalContainer.innerHTML = '';
   currentFilmId = e.target.closest('li').dataset.id;
@@ -69,6 +68,9 @@ function createModal(data) {
 }
 
 function onAddWatchedBtn() {
+  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
+    return;
+  }
 
   filmsIds.watchedFilmsIds.push(currentFilmId);
   saveData("filmsIds", filmsIds);
@@ -76,6 +78,9 @@ function onAddWatchedBtn() {
 }
 
 function onAddQueueBtn() {
+  if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
+    return;
+  }
 
   filmsIds.queueFilmsIds.push(currentFilmId);
   saveData("filmsIds", filmsIds);
@@ -90,7 +95,7 @@ function backDropHandler(e) {
   }
 }
 
- function onCloseModal() {
+function onCloseModal() {
   refs.modal.classList.toggle('is-hidden');
   document.removeEventListener('keydown', onEscapeClick);
   refs.modal.removeEventListener('click', backDropHandler);
@@ -104,13 +109,13 @@ function onEscapeClick(e) {
 }
 
 function addEventListeners() {
-    document.addEventListener('keydown', onEscapeClick);
+  document.addEventListener('keydown', onEscapeClick);
   refs.modal.addEventListener('click', backDropHandler);
   const closeBtn = document.querySelector('.close-button');
   closeBtn.addEventListener('click', onCloseModal);
   const addWatchedBtn = document.querySelector('[data-watched]');
   addWatchedBtn.addEventListener('click', onAddWatchedBtn);
-    const addQueueBtn = document.querySelector('[data-queue]');
+  const addQueueBtn = document.querySelector('[data-queue]');
   addQueueBtn.addEventListener('click', onAddQueueBtn);
   const trailerBtn = document.querySelector('.trailer');
   trailerBtn.addEventListener('click', onTrailerBtnClick);
@@ -137,4 +142,5 @@ trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
   });
   e.target.parentNode.nextElementSibling.classList.add('active');
 }
+
 
