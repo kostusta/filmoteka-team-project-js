@@ -23,31 +23,5 @@ export async function fetchMovies(page) {
   //console.log(parmams.page);
   return response.data;
 }
-export default class API {
-  constructor() {
-    this.page = 1;
-    this.searchQuery = '';
-  }
-  async fetchMovieSearchQuery() {
-    const options = {
-      api_key: '0a0eacc01c98f8ef04ac7ca82867ea4e',
-    };
-    try {
-      const response = await axios.get(
-        `/search/movie?api_key=${options.api_key}&query=${this.searchQuery}&page=${this.page}`,
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-   setQuery(newQuery) {
-    this.searchQuery = newQuery;
-  }
-  setPage(newPage) {
-    this.page = newPage;
-  }
-  resetPage() {
-    this.page = 1;
-  }
-}
+
+
