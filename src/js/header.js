@@ -2,6 +2,7 @@ import {
   clearContainerMarkup,
   filmCardsMarkupCreate,
   renderMarkup,
+  onWatchBtnClick,
 } from './header-buttons-handlers';
 import LocalStorage from './local-storage-api';
 import FilmsApi from './films-api';
@@ -54,17 +55,5 @@ function onLibBtnClick(event) {
   refs.homeBtn.classList.remove('site-nav__link--current');
   refs.pagination.classList.add('visually-hidden')
 
-  Promise.all(
-    storage.getWatchedFilmsIds().map(filmId => {
-      return filmApi.fetchMovieById(filmId);
-    }),
-  )
-    .then(data => {
-      return filmCardsMarkupCreate(data);
-    })
-    .then(markup => {
-      clearContainerMarkup(refs.galery);
-      renderMarkup(refs.galery, markup);
-    })
-    .catch();
+  onWatchBtnClick()
 }

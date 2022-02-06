@@ -39,7 +39,7 @@ function queueBtnClickActivation() {
   refs.watchedBtn.classList.remove('button--orange');
 }
 
-function onWatchBtnClick() {
+export function onWatchBtnClick() {
   watchedBtnClickActivation();
 
   if (storage.getWatchedFilmsIds().length === 0) {
