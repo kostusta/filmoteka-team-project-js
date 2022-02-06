@@ -1,7 +1,7 @@
 import './sass/main.scss';
 
 import './js/header';
-import './js/theme-toggle';
+import './js/dark-theme-toggle';
 import './js/on-search-query';
 import './js/search-error';
 import './js/header-buttons-handlers';

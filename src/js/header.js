@@ -1,16 +1,9 @@
 import {
   clearContainerMarkup,
-  filmCardsMarkupCreate,
-  renderMarkup,
   onWatchBtnClick,
 } from './header-buttons-handlers';
-import LocalStorage from './local-storage-api';
-import FilmsApi from './films-api';
 
 import { paginationOn, fetch } from './pagination';
-
-const filmApi = new FilmsApi();
-const storage = new LocalStorage();
 
 const refs = {
   header: document.querySelector('.header'),
