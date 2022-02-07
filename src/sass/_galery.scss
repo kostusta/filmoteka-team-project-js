@@ -73,11 +73,14 @@
         }
       }
 
-      p {
+      &__title {
         margin-top: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
 
-      span {
+      &__genre {
         color: #ff6b08;
       }
     }
