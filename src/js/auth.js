@@ -19,7 +19,6 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { async } from '@firebase/util';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -51,6 +50,9 @@ function onAuthModalOpen() {
   refs.authModal.classList.toggle('is-hidden');
   refs.signInBtn.addEventListener('click', loginEmailPassword);
   refs.registrBtn.addEventListener('click', createAccount);
+  refs.authModal.addEventListener('click', onBackDropClick);
+  refs.authClose.addEventListener('click', onCloseModal);
+  document.addEventListener('keydown', onEscapeClick);
 }
 
 // Вход с помощью почты и пароля
@@ -138,5 +140,27 @@ export async function readUserData(user) {
     }
   } catch (error) {
     console.error(error);
+  }
+}
+
+function onBackDropClick(e) {
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+    return;
+  }
+}
+
+function onCloseModal() {
+  refs.authModal.classList.toggle('is-hidden');
+  refs.authModal.removeEventListener('click', onBackDropClick);
+  refs.signInBtn.removeEventListener('click', loginEmailPassword);
+  refs.registrBtn.removeEventListener('click', createAccount);
+  refs.authClose.removeEventListener('click', onCloseModal);
+  document.removeEventListener('keydown', onEscapeClick);
+}
+
+function onEscapeClick(e) {
+  if (e.code === 'Escape') {
+    onCloseModal();
   }
 }

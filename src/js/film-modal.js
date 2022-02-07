@@ -3,10 +3,7 @@ import modalMovie from '../templates/modal_movie.hbs';
 import { onAuthStateChanged } from 'firebase/auth';
 import { fetchMovieById } from './api';
 import { saveData, loadData } from './storage';
-import { writeUserData } from './auth';
-import { readUserData } from './auth';
-import { auth } from './auth';
-import { saveData, loadData } from './storage';
+import { auth, writeUserData, readUserData } from './auth';
 import axios from 'axios';
 
 Notiflix.Notify.init({
