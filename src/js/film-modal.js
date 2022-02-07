@@ -117,7 +117,7 @@ function addEventListeners() {
   addWatchedBtn.addEventListener('click', onAddWatchedBtn);
   const addQueueBtn = document.querySelector('[data-queue]');
   addQueueBtn.addEventListener('click', onAddQueueBtn);
-  const trailerBtn = document.querySelector('.trailer');
+  const trailerBtn = document.querySelector('.trailer-btn');
   trailerBtn.addEventListener('click', onTrailerBtnClick);
   const trailerVideo = document.querySelector('.trailer-video');
 
@@ -140,7 +140,7 @@ function onTrailerBtnClick(e) {
    fetch(currentTrailerTitle).then(trailerId => {
 trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
   });
-  e.target.parentNode.nextElementSibling.classList.add('active');
+  trailer.classList.add('active');
 }
 
 

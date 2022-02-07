@@ -43,6 +43,7 @@
       width: 280px;
       height: 443px;
       margin-top: 20px;
+      cursor: pointer;
 
       @media screen and (min-width: 768px) {
         width: 294px;
@@ -59,6 +60,8 @@
       .thumb {
         height: 398px;
         width: 280px;
+        overflow: hidden;
+
         @media screen and (min-width: 768px) {
           width: 294px;
         }
@@ -70,6 +73,8 @@
           height: 100%;
           width: 100%;
           object-fit: cover;
+          transition: transform 300ms ease-in-out;
+          transform: scale(1);
         }
       }
 
@@ -79,6 +84,10 @@
 
       span {
         color: #ff6b08;
+      }
+      &:hover img {
+        transition: transform 300ms ease-in-out;
+        transform: scale(1.1);
       }
     }
   }
