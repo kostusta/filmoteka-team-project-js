@@ -1,12 +1,14 @@
 import Notiflix from 'notiflix';
 import modalMovie from '../templates/modal_movie.hbs';
+import { onAuthStateChanged } from 'firebase/auth';
 import { fetchMovieById } from './api';
-import { saveData, loadData } from "./storage";
+import { saveData, loadData } from './storage';
+import { auth, writeUserData, readUserData } from './auth';
 import axios from 'axios';
 
 Notiflix.Notify.init({
   width: '300px',
-  position: 'left-top', 
+  position: 'left-top',
   distance: '40px',
   clickToClose: true,
   fontSize: '22px',
@@ -21,13 +23,25 @@ const refs = {
 };
 refs.libraryList.addEventListener('click', onOpenModal);
 
-
 let currentFilmId;
 let currentTrailerTitle;
 let filmsIds = {
   watchedFilmsIds: [],
   queueFilmsIds: [],
 };
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    readUserData(user)
+      .then(data => {
+        filmsIds.watchedFilmsIds = data.val().watchedFilmsIds;
+        filmsIds.queueFilmsIds = data.val().queueFilmsIds;
+        console.log(filmsIds);
+        saveData('filmsIds', filmsIds);
+      })
+      .catch(e => console.log(e));
+  }
+});
 
 function onOpenModal(e) {
   if (loadData('filmsIds')) {
@@ -46,7 +60,6 @@ function onOpenModal(e) {
 //   refs.modalContainer.innerHTML = '';
 //   currentFilmId = e.target.closest('li').dataset.id;
 
-
 //   fetchMovieById(currentFilmId)
 //   .then(createModal)
 //   .then(fetch)
@@ -55,7 +68,6 @@ function onOpenModal(e) {
 //   })
 //   ;
 // }
-
 
 function createModal(data) {
   const markup = modalMovie(data);
@@ -72,8 +84,16 @@ function onAddWatchedBtn() {
     return;
   }
 
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      writeUserData(user, filmsIds);
+    } else {
+      console.log('вы не вошли');
+    }
+  });
+
   filmsIds.watchedFilmsIds.push(currentFilmId);
-  saveData("filmsIds", filmsIds);
+  saveData('filmsIds', filmsIds);
   Notiflix.Notify.success('This movie has been added to WATCH');
 }
 
@@ -82,10 +102,17 @@ function onAddQueueBtn() {
     return;
   }
 
-  filmsIds.queueFilmsIds.push(currentFilmId);
-  saveData("filmsIds", filmsIds);
-    Notiflix.Notify.success('This movie has been added to QUEUE');
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      writeUserData(user, filmsIds);
+    } else {
+      console.log('вы не вошли');
+    }
+  });
 
+  filmsIds.queueFilmsIds.push(currentFilmId);
+  saveData('filmsIds', filmsIds);
+  Notiflix.Notify.success('This movie has been added to QUEUE');
 }
 
 function backDropHandler(e) {
@@ -120,27 +147,23 @@ function addEventListeners() {
   const trailerBtn = document.querySelector('.trailer');
   trailerBtn.addEventListener('click', onTrailerBtnClick);
   const trailerVideo = document.querySelector('.trailer-video');
-
 }
-
 
 //  Kак получить ключ https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
 
- async function fetch(name) {
-	 const API = 'AIzaSyCZe9rPo2hXxE-YtCc92VzPMTl5oX22cU8';
+async function fetch(name) {
+  const API = 'AIzaSyCZe9rPo2hXxE-YtCc92VzPMTl5oX22cU8';
   const url = `https://www.googleapis.com/youtube/v3/search?q=${name}+trailer+official+russian&key=${API}`;
   const response = await axios.get(`${url}`);
-   const trailerId =  response.data.items[0].id.videoId;
-   return trailerId;
- }
+  const trailerId = response.data.items[0].id.videoId;
+  return trailerId;
+}
 
 function onTrailerBtnClick(e) {
   const trailer = e.target.parentNode.nextElementSibling;
   currentTrailerTitle = trailer.dataset.title;
-   fetch(currentTrailerTitle).then(trailerId => {
-trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
+  fetch(currentTrailerTitle).then(trailerId => {
+    trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
   });
   e.target.parentNode.nextElementSibling.classList.add('active');
 }
-
-
