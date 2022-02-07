@@ -1,27 +1,9 @@
+import { refs } from './common-references';
 import {
   clearContainerMarkup,
-  filmCardsMarkupCreate,
-  renderMarkup,
   onWatchBtnClick,
 } from './header-buttons-handlers';
-import LocalStorage from './local-storage-api';
-import FilmsApi from './films-api';
-
 import { paginationOn, fetch } from './pagination';
-
-const filmApi = new FilmsApi();
-const storage = new LocalStorage();
-
-const refs = {
-  header: document.querySelector('.header'),
-  homeBtn: document.querySelector('[data-home-btn]'),
-  libBtn: document.querySelector('[data-lib-btn]'),
-  form: document.querySelector('.header-form'),
-  btnList: document.querySelector('.button-list'),
-  galery: document.querySelector('.library__list'),
-  headerIcon: document.querySelector('.header__home-link'),
-  pagination: document.getElementById('tui-pagination-container')
-};
 
 refs.homeBtn.addEventListener('click', onHomeBtnClick);
 refs.libBtn.addEventListener('click', onLibBtnClick);

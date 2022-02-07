@@ -1,5 +1,8 @@
 export default class LocalStorage {
-  constructor() {}
+  constructor() {
+    // this.key = key
+    // this.value = value
+  }
 
   getWatchedFilmsIds() {
     try {
@@ -16,4 +19,8 @@ export default class LocalStorage {
         : JSON.parse(localStorage.getItem('filmsIds')).queueFilmsIds;
     } catch {}
   }
+
+  saveData(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
 } 
