@@ -44,6 +44,7 @@
       height: 443px;
       margin-top: 20px;
       cursor: pointer;
+      box-shadow: 5px -5px 10px 0 rgba(255, 255, 255, 0.3);
 
       @media screen and (min-width: 768px) {
         width: 294px;
@@ -88,6 +89,9 @@
       &:hover img {
         transition: transform 300ms ease-in-out;
         transform: scale(1.1);
+      }
+      &:hover {
+        box-shadow: 5px -5px 10px 1px rgba(255, 255, 255, 0.5);
       }
     }
   }
