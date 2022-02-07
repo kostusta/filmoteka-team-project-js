@@ -60,7 +60,6 @@ const loginEmailPassword = async () => {
 
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log(userCredential.user);
     refs.authModal.classList.toggle('is-hidden');
     return userCredential;
   } catch (error) {
@@ -86,12 +85,12 @@ const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       refs.authBtn.removeEventListener('click', onAuthModalOpen);
-      refs.authBtn.textContent = `${user.email}`;
+      refs.authBtn.textContent = `Log out`;
       refs.authBtn.addEventListener('click', logOut);
       Notify.success(`Вы вошли как ${user.email}`);
     } else {
       refs.authBtn.removeEventListener('click', logOut);
-      refs.authBtn.textContent = 'Войти';
+      refs.authBtn.textContent = 'Log in';
       refs.authBtn.addEventListener('click', onAuthModalOpen);
       Notify.warning('Вы не вошли в аккаунт!');
     }
