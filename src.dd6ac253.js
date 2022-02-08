@@ -150,4 +150,4 @@ const e=document.querySelectorAll(".team-modal-link"),t=document.querySelector("
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/common-references"),require("./js/header"),require("./js/preloader"),require("./js/on-search-query"),require("./js/apiMoviesSearch"),require("./js/dark-theme-toggle"),require("./js/header-buttons-handlers"),require("./js/pagination"),require("./js/ontop-btn"),require("./js/film-modal"),require("./js/team-modal"),require("./js/auth");
 },{"./sass/main.scss":"clu1","./js/common-references":"hVOc","./js/header":"cGsR","./js/preloader":"BeZ8","./js/on-search-query":"Fwx3","./js/apiMoviesSearch":"VItX","./js/dark-theme-toggle":"ffe9","./js/header-buttons-handlers":"zE6z","./js/pagination":"o8lo","./js/ontop-btn":"zqxi","./js/film-modal":"v6dG","./js/team-modal":"SVxB","./js/auth":"zSTK"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka-team-project-js/src.756d3c17.js.map
+//# sourceMappingURL=/filmoteka-team-project-js/src.dd6ac253.js.map
