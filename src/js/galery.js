@@ -23,5 +23,4 @@ export function renderGalery({ results }) {
   const markup = results.map(filmCard);
   refs.gallery.innerHTML = '';
   refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
-  console.log('Зарендерили', results);
 }
