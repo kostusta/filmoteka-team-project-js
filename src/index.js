@@ -2,6 +2,7 @@ import './sass/main.scss';
 
 import './js/common-references';
 import './js/header';
+import "./js/preloader";
 import "./js/on-search-query"
 import "./js/apiMoviesSearch"
 import './js/dark-theme-toggle';

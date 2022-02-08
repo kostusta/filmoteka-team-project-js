@@ -10,6 +10,7 @@ export const refs = {
   authForm: document.querySelector('.auth-form'),
   signInBtn: document.querySelector('.sign-in-btn'),
   registrBtn: document.querySelector('.registr-btn'),
+  authClose: document.querySelector('.login_wr__close-button'),
 };
 
 export function getColection() {
