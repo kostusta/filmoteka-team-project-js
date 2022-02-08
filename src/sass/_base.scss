@@ -38,11 +38,26 @@ $footer-text-color: #545454;
 $modal-subtitle-text-color: #8c8c8c;
 
 body {
+  height: 100%;
   background: $main-bg-color;
   color: $main-text-color;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   letter-spacing: 0.04em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.library {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
 }
 
 .visually-hidden {
