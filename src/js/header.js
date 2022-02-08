@@ -1,8 +1,5 @@
 import { refs } from './common-references';
-import {
-  clearContainerMarkup,
-  onWatchBtnClick,
-} from './header-buttons-handlers';
+import { clearContainerMarkup, onWatchBtnClick } from './header-buttons-handlers';
 import { paginationOn, fetch } from './pagination';
 
 refs.homeBtn.addEventListener('click', onHomeBtnClick);
@@ -22,7 +19,8 @@ function onHomeBtnClick(event) {
   refs.btnList.classList.add('visually-hidden');
   refs.homeBtn.classList.add('site-nav__link--current');
   refs.libBtn.classList.remove('site-nav__link--current');
-  refs.pagination.classList.remove('visually-hidden')
+  refs.pagination.classList.remove('visually-hidden');
+  refs.headerDomEl.classList.remove('header--my-lib');
 }
 
 function onLibBtnClick(event) {
@@ -35,7 +33,8 @@ function onLibBtnClick(event) {
   refs.btnList.classList.remove('visually-hidden');
   refs.libBtn.classList.add('site-nav__link--current');
   refs.homeBtn.classList.remove('site-nav__link--current');
-  refs.pagination.classList.add('visually-hidden')
+  refs.pagination.classList.add('visually-hidden');
+  refs.headerDomEl.classList.add('header--my-lib');
 
-  onWatchBtnClick()
+  onWatchBtnClick();
 }
