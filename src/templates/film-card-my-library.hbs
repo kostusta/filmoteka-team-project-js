@@ -1,13 +1,15 @@
 <li class='item' data-id='{{id}}'>
   <div class='thumb'><img src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt='' /></div>
-  <p>
-    {{original_title}}
-    <br />
-    <span>
+  <div>
+    <p class='item__title'>
+      {{original_title}}
+    </p>
+    <p class='item__genre'>
       {{genres.0.name}},
       {{genres.1.name}}
       |
       {{release_date}}
-    </span>
-  </p>
+    </p>
+  </div>
+
 </li>

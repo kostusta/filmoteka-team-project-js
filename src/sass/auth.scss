@@ -15,6 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 350px;
   }
 
   .account_circle {
@@ -26,7 +27,6 @@
 
 #range2 .login-wr {
   position: relative;
-  margin: 0 auto;
   background: #fff;
   max-width: 350px;
   box-shadow: 3px 3px 10px #333;
@@ -50,7 +50,7 @@
 
 #range2 input[type='email'],
 #range2 input[type='password'],
-#range2 button {
+#range2 .range2__btn {
   margin-bottom: 25px;
   height: 40px;
   outline: 0;
@@ -82,7 +82,7 @@
   color: #3498db;
 }
 
-#range2 button {
+#range2 .range2__btn {
   width: 80%;
   background: #2196f3;
   border: none;
@@ -96,4 +96,24 @@
 
 #range2 p {
   padding-bottom: 10px;
+}
+
+.login_wr {
+  &__close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px;
+    background-color: transparent;
+    border: transparent;
+    outline: none;
+    cursor: pointer;
+    &:hover > svg,
+    &:focus > svg {
+      stroke: $accent-text-color;
+    }
+    svg {
+      stroke: $main-text-color;
+    }
+  }
 }
