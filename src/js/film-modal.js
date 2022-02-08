@@ -2,8 +2,9 @@ import Notiflix from 'notiflix';
 import modalMovie from '../templates/modal_movie.hbs';
 import { onAuthStateChanged } from 'firebase/auth';
 import { fetchMovieById } from './api';
-import { saveData, loadData } from './storage';
+import { saveData, loadData} from './storage';
 import { auth, writeUserData, readUserData } from './auth';
+import {onWatchBtnClick, onQueueBtnClick} from "./header-buttons-handlers";
 import axios from 'axios';
 
 Notiflix.Notify.init({
@@ -44,6 +45,7 @@ onAuthStateChanged(auth, user => {
 });
 
 function onOpenModal(e) {
+
   if (loadData('filmsIds')) {
     filmsIds = loadData('filmsIds');
   }
@@ -51,6 +53,7 @@ function onOpenModal(e) {
   currentFilmId = e.target.closest('li').dataset.id;
 
   fetchMovieById(currentFilmId).then(createModal);
+
 }
 
 // function onOpenModal(e) {
@@ -77,10 +80,21 @@ function createModal(data) {
   document.body.style.overflow = 'hidden';
 
   addEventListeners();
+  checkHomepageForDuplicates();
+  checkLibraryForDuplicates();
 }
 
-function onAddWatchedBtn() {
+function onAddWatchedBtn(e) {
   if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
+	//   e.target.textContent = 'already in the watched';
+	//   	e.target.setAttribute('disabled', "disabled");
+filmsIds.watchedFilmsIds = filmsIds.watchedFilmsIds.filter(id => id !== currentFilmId);
+  saveData('filmsIds', filmsIds);
+onWatchBtnClick();
+e.target.classList.remove('button--transparent');
+e.target.classList.add('button--orange');
+e.target.textContent = 'add to watched';
+
     return;
   }
 
@@ -94,11 +108,23 @@ function onAddWatchedBtn() {
 
   filmsIds.watchedFilmsIds.push(currentFilmId);
   saveData('filmsIds', filmsIds);
-  Notiflix.Notify.success('This movie has been added to WATCH');
+  e.target.classList.remove('button--orange');
+e.target.classList.add('button--transparent');
+e.target.textContent = 'remove from watched';
+
 }
 
-function onAddQueueBtn() {
+function onAddQueueBtn(e) {
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
+	//   e.target.classList.add("card__btn--disabled");
+	//   e.target.textContent = 'already in the queue';
+	//   	e.target.setAttribute('disabled', "disabled");
+	filmsIds.queueFilmsIds = filmsIds.queueFilmsIds.filter(id => id !== currentFilmId);
+  saveData('filmsIds', filmsIds);
+onQueueBtnClick();
+e.target.classList.remove('button--transparent');
+e.target.classList.add('button--orange');
+e.target.textContent = 'add to queue';
     return;
   }
 
@@ -112,7 +138,10 @@ function onAddQueueBtn() {
 
   filmsIds.queueFilmsIds.push(currentFilmId);
   saveData('filmsIds', filmsIds);
-  Notiflix.Notify.success('This movie has been added to QUEUE');
+    e.target.classList.remove('button--orange');
+e.target.classList.add('button--transparent');
+e.target.textContent = 'remove from queue';
+
 }
 
 function backDropHandler(e) {
@@ -166,4 +195,47 @@ function onTrailerBtnClick(e) {
     trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
   });
   trailer.classList.add('active');
+}
+
+function checkLibraryForDuplicates() {
+	const currentPage = document.querySelector('[data-lib-btn]');
+
+	if(currentPage.classList.contains('site-nav__link--current')){
+	    	  if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
+const btnQueue = document.querySelector('[data-queue]');
+	  btnQueue.classList.add("button--transparent");
+	  btnQueue.textContent = 'remove from queue';
+	  	// btnQueue.setAttribute('disabled', "disabled");
+  }
+
+      	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
+		  const btnWatched = document.querySelector('[data-watched]');
+	  btnWatched.classList.add("button--transparent");
+	  btnWatched.textContent = 'remove from watched';
+	  	// btnWatched.setAttribute('disabled', "disabled");
+  }
+
+	}
+
+
+}
+
+function checkHomepageForDuplicates() {
+	const currentPage = document.querySelector('[data-home-btn]');
+
+	if(currentPage.classList.contains('site-nav__link--current')){
+
+if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
+const btnQueue = document.querySelector('[data-queue]');
+	  btnQueue.classList.add("button--transparent");
+	  btnQueue.textContent = 'already added';
+	  	btnQueue.setAttribute('disabled', "disabled");
+  }
+
+      	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
+		  const btnWatched = document.querySelector('[data-watched]');
+	  btnWatched.classList.add("button--transparent");
+	  btnWatched.textContent = 'already added';
+	  	btnWatched.setAttribute('disabled', "disabled");
+  }	} 
 }

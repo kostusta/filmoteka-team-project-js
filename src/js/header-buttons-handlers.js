@@ -41,9 +41,10 @@ export function onWatchBtnClick() {
     clearContainerMarkup(refs.libraryList);
     const markup = emptyLs();
     renderMarkup(refs.libraryList, markup);
-    document.querySelector('.empty-message').addClasslist('is-shown');
+   //  document.querySelector('.empty-message').addClasslist('is-shown');
     return;
   }
+
 
   Promise.all(
     storage.getWatchedFilmsIds().map(filmId => {
@@ -60,7 +61,7 @@ export function onWatchBtnClick() {
     .catch();
 }
 
-function onQueueBtnClick() {
+export function onQueueBtnClick() {
 
   queueBtnClickActivation();
 
