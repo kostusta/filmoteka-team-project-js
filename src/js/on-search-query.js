@@ -1,5 +1,7 @@
 import Api from "./apiMoviesSearch"
 import filmCard from "../templates/movie-card.hbs"
+import { startPreloader, stopPreloader } from './preloader'
+
 
 const api = new Api();
 
@@ -11,16 +13,19 @@ const headerFormInput = document.querySelector(".header__input")
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 
 function onSearchMovies(event) {
+  startPreloader()
   api.query = headerFormInput.value.trim();
   api.resetPage();
   event.preventDefault();
+
   if (api.query === '') {
     event.preventDefault();
     headerError.classList.remove('visually-hidden', 'none');
+    
     setTimeout(() => {
       headerError.classList.add('visually-hidden', 'none');
     }, 3000);
-
+    stopPreloader()
     return;
   }
 
@@ -29,10 +34,12 @@ function onSearchMovies(event) {
       .then((movies) => {
         if (movies.results.length < 1) {
           headerError.classList.remove('visually-hidden', 'none');
+          
           setTimeout(() => {
             headerError.classList.add('visually-hidden', 'none');
           }, 3000);
           cleanInput()
+         stopPreloader()
         
           return;
         };
@@ -41,13 +48,19 @@ function onSearchMovies(event) {
           headerError.classList.add('visually-hidden', 'none');
           clearMovieCardContainer();
           appendMovieCardMarkup(movies.results);
-          cleanInput()
+          cleanInput();
+
+
+
+          stopPreloader();
         
         }
 
       })
       .catch(err => console.log(err))
   }
+ 
+
 }
 function cleanInput() {
   headerFormInput.value = '';
