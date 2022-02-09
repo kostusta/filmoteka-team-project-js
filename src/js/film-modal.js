@@ -23,7 +23,6 @@ const refs = {
   modalContainer: document.querySelector('.card'),
 };
 refs.libraryList.addEventListener('click', onOpenModal);
-
 let currentFilmId;
 let currentTrailerTitle;
 let filmsIds = {
@@ -31,6 +30,7 @@ let filmsIds = {
   queueFilmsIds: [],
 };
 
+// Авторизация
 onAuthStateChanged(auth, user => {
   if (user) {
     readUserData(user)
@@ -44,6 +44,7 @@ onAuthStateChanged(auth, user => {
   }
 });
 
+// Открытие модалки
 function onOpenModal(e) {
 
   if (loadData('filmsIds')) {
@@ -55,23 +56,6 @@ function onOpenModal(e) {
   fetchMovieById(currentFilmId).then(createModal);
 
 }
-
-// function onOpenModal(e) {
-//   if (loadData('filmsIds')) {
-//       filmsIds = loadData('filmsIds');
-//   }
-//   refs.modalContainer.innerHTML = '';
-//   currentFilmId = e.target.closest('li').dataset.id;
-
-//   fetchMovieById(currentFilmId)
-//   .then(createModal)
-//   .then(fetch)
-//   .then((data) => {
-// 	  console.log(data);
-//   })
-//   ;
-// }
-
 function createModal(data) {
   const markup = modalMovie(data);
 
@@ -84,20 +68,23 @@ function createModal(data) {
   checkLibraryForDuplicates();
 }
 
+
+// Функция обработки события по кнопке добавления в просмотренные фильмы
 function onAddWatchedBtn(e) {
+  const button = e.target;
+
   if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
-	//   e.target.textContent = 'already in the watched';
-	//   	e.target.setAttribute('disabled', "disabled");
 filmsIds.watchedFilmsIds = filmsIds.watchedFilmsIds.filter(id => id !== currentFilmId);
   saveData('filmsIds', filmsIds);
-onWatchBtnClick();
-e.target.classList.remove('button--transparent');
-e.target.classList.add('button--orange');
-e.target.textContent = 'add to watched';
+    onWatchBtnClick();
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to watched';
 
     return;
   }
-
+  removeMovieById(button, filmsIds.watchedFilmsIds);
+  
   onAuthStateChanged(auth, user => {
     if (user) {
       writeUserData(user, filmsIds);
@@ -108,23 +95,20 @@ e.target.textContent = 'add to watched';
 
   filmsIds.watchedFilmsIds.push(currentFilmId);
   saveData('filmsIds', filmsIds);
-  e.target.classList.remove('button--orange');
-e.target.classList.add('button--transparent');
-e.target.textContent = 'remove from watched';
-
+  changeStyleBtn(button, 'watched');
 }
 
+// Функция обработки события по кнопке добавления фильма в очередь
 function onAddQueueBtn(e) {
+  const button = e.target;
+
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
-	//   e.target.classList.add("card__btn--disabled");
-	//   e.target.textContent = 'already in the queue';
-	//   	e.target.setAttribute('disabled', "disabled");
 	filmsIds.queueFilmsIds = filmsIds.queueFilmsIds.filter(id => id !== currentFilmId);
   saveData('filmsIds', filmsIds);
 onQueueBtnClick();
-e.target.classList.remove('button--transparent');
-e.target.classList.add('button--orange');
-e.target.textContent = 'add to queue';
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to queue';
     return;
   }
 
@@ -138,12 +122,10 @@ e.target.textContent = 'add to queue';
 
   filmsIds.queueFilmsIds.push(currentFilmId);
   saveData('filmsIds', filmsIds);
-    e.target.classList.remove('button--orange');
-e.target.classList.add('button--transparent');
-e.target.textContent = 'remove from queue';
-
+  changeStyleBtn(button, 'queue');
 }
 
+// Функция обработки бэкдропа
 function backDropHandler(e) {
   if (e.currentTarget === e.target) {
     onCloseModal();
@@ -151,6 +133,7 @@ function backDropHandler(e) {
   }
 }
 
+// Закрытие модалки
 function onCloseModal() {
   refs.modal.classList.toggle('is-hidden');
   document.removeEventListener('keydown', onEscapeClick);
@@ -158,12 +141,14 @@ function onCloseModal() {
   document.body.style.overflow = '';
 }
 
+// Обработка события по эскейпу
 function onEscapeClick(e) {
   if (e.code === 'Escape') {
     onCloseModal();
   }
 }
 
+// Добавление слушателей событий
 function addEventListeners() {
   document.addEventListener('keydown', onEscapeClick);
   refs.modal.addEventListener('click', backDropHandler);
@@ -178,8 +163,9 @@ function addEventListeners() {
   const trailerVideo = document.querySelector('.trailer-video');
 }
 
-//  Kак получить ключ https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
 
+// Запрос трейлера на апи ютуба 
+//  Kак получить ключ https://www.pandoge.com/stati-i-sovety/kak-poluchit-api-key-dlya-raboty-s-servisom-youtube
 async function fetch(name) {
   const API = 'AIzaSyCZe9rPo2hXxE-YtCc92VzPMTl5oX22cU8';
   const url = `https://www.googleapis.com/youtube/v3/search?q=${name}+trailer+official+russian&key=${API}`;
@@ -188,6 +174,7 @@ async function fetch(name) {
   return trailerId;
 }
 
+// Функция обработки события на кнопку открытия трейлера
 function onTrailerBtnClick(e) {
   const trailer = e.target.parentNode.nextElementSibling;
   currentTrailerTitle = trailer.dataset.title;
@@ -197,6 +184,7 @@ function onTrailerBtnClick(e) {
   trailer.classList.add('active');
 }
 
+// Проверка на наличие фильма в библиотеке и применение соответствующих стилей на кнопки
 function checkLibraryForDuplicates() {
 	const currentPage = document.querySelector('[data-lib-btn]');
 
@@ -205,21 +193,15 @@ function checkLibraryForDuplicates() {
 const btnQueue = document.querySelector('[data-queue]');
 	  btnQueue.classList.add("button--transparent");
 	  btnQueue.textContent = 'remove from queue';
-	  	// btnQueue.setAttribute('disabled', "disabled");
   }
 
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
 	  btnWatched.classList.add("button--transparent");
 	  btnWatched.textContent = 'remove from watched';
-	  	// btnWatched.setAttribute('disabled', "disabled");
   }
-
 	}
-
-
 }
-
 function checkHomepageForDuplicates() {
 	const currentPage = document.querySelector('[data-home-btn]');
 
@@ -229,13 +211,55 @@ if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 const btnQueue = document.querySelector('[data-queue]');
 	  btnQueue.classList.add("button--transparent");
 	  btnQueue.textContent = 'already added';
-	  	btnQueue.setAttribute('disabled', "disabled");
+  btnQueue.setAttribute('disabled', "disabled");
+  btnQueue.classList.add('card__btn--disabled');
   }
 
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
 	  btnWatched.classList.add("button--transparent");
 	  btnWatched.textContent = 'already added';
-	  	btnWatched.setAttribute('disabled', "disabled");
+    btnWatched.setAttribute('disabled', "disabled");
+            btnWatched.classList.add('card__btn--disabled');
+
   }	} 
+}
+
+// Получение текущей страницы
+function getCurrentPage() {
+  const currentPage = document.querySelector('.site-nav__link--current');
+
+  if (currentPage.textContent == 'home') {
+    return 'home'
+  } else {
+        return 'library';
+  }
+}
+
+// Функция изменения стиля кнопок при добавлении фильма
+function changeStyleBtn(button, name) {
+    const currentPage = getCurrentPage();
+
+          button.classList.remove('button--orange');
+button.classList.add('button--transparent');
+
+          if(currentPage == 'library'){
+button.textContent = `remove from ${name}`;
+          } else {
+            button.textContent = `added to ${name}`;
+            button.setAttribute('disabled', "disabled");
+            button.classList.add('card__btn--disabled')
+    }
+}
+
+// todo функцию удаления фильма
+function removeMovieById(button, array) {
+   
+array = array.filter(id => id !== currentFilmId);
+  saveData('filmsIds', filmsIds);
+    onWatchBtnClick();
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to watched';
+  
 }
