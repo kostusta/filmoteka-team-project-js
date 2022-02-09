@@ -68,7 +68,10 @@
       }
     }
     &__auth-btn {
-      background-color: inherit;
+      background: transparent;
+      width: 63px;
+      text-align: center;
+      border: none;
     }
     &__link,
     &__auth-btn {

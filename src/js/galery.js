@@ -13,7 +13,7 @@ export const refs = {
   authClose: document.querySelector('.login_wr__close-button'),
 };
 
-const namesOfGenres = new Map();
+export const namesOfGenres = new Map();
 genres.genres.map(genre => {
   namesOfGenres.set(genre.id, genre.name);
 });
@@ -28,12 +28,9 @@ export function renderGalery({ results }) {
   const markup = getGenres(results).map(filmCard);
   refs.gallery.innerHTML = '';
   refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
-
-  // console.log('Зарендерили', results);
-  // console.log('~ getGenres(results)', getGenres(results));
 }
 
-function getGenres(results) {
+export function getGenres(results) {
   const newResults = results.map(film => {
     const { genre_ids, release_date } = film;
 
@@ -46,6 +43,10 @@ function getGenres(results) {
     });
 
     film.release_year = release_date.split('').slice(0, 4).join('');
+    if (newName.length === 0) {
+      film.genreWithNames = 'Action';
+      return film;
+    }
     film.genreWithNames = newName.length > 1 ? `${newName[0]}, ${newName[1]}` : `${newName[0]}`;
 
     return film;
