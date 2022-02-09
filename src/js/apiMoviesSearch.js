@@ -24,7 +24,26 @@ export default class Api {
         } catch (error) {
             console.log(error);
         }
+    };
+
+      async fetchGenre() {
+        const url = `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
+
+        try {
+            const data = await axios.get(url);
+            const objects = data.data.genres;
+            const genres = {};
+            objects.forEach(({id, name}) => {
+                genres[id] = name;
+            });
+        
+            return genres;
+
+        } catch (error) {
+            console.log(error);
+        }
     }
+
 
 
     decrementPage() {
