@@ -33,7 +33,7 @@ export function renderGalery({ results }) {
   // console.log('~ getGenres(results)', getGenres(results));
 }
 
-function getGenres(results) {
+ function getGenres(results) {
   const newResults = results.map(film => {
     const { genre_ids, release_date } = film;
 

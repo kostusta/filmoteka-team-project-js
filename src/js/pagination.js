@@ -4,6 +4,7 @@ import '../sass/_pagination-btn.scss';
 import { fetchMovies } from './api';
 import { renderGalery } from './galery';
 
+
 const container = document.getElementById('tui-pagination-container');
 
 const pagination = new Pagination(container, {
@@ -40,3 +41,6 @@ export function paginationOn() {
 }
 
 paginationOn();
+
+
+export {pagination};
