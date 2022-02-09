@@ -20,6 +20,10 @@ export const refs = {
   footer: document.querySelector('footer .container'),
   footerLink: document.querySelector('.team-modal-link'),
   footerLinkUnderline: document.querySelector('.underline'),
+  filmModal: document.querySelector('.card.modal'),
+  teamModalBg: document.querySelector('.team-modal-content'),
+  teamModalListTextColor: [...document.querySelectorAll('.team-list-text')],
+  teamModalListTitleColor: [...document.querySelectorAll('.team-list-title')],
 
   // header buttons click handler refs
   libraryList: document.querySelector('.library__list'),

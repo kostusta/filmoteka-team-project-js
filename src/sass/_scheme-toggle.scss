@@ -57,9 +57,13 @@
     left: 1px;
     width: 20px;
     height: 20px;
-    border: 1px solid #000000;
     border-radius: 50%;
-    background-color: #ffffff;
+    // border: 1px solid #000000;
+    // background-color: #ffffff;
+
+    animation-name: DarckSchemeToggleUnchecked;
+    animation-fill-mode: forwards;
+    animation-duration: 250ms;
 
     &:hover,
     &:focus {
@@ -68,12 +72,41 @@
   }
 
   &-control--checked {
-    transform: translate(20px);
-    background-color: #000000;
-    border: 1px solid #ffffff;
+    // transform: translate(20px);
+    // background-color: #000000;
+    // border: 1px solid #ffffff;
+
+    animation-name: DarckSchemeToggleChecked;
+    animation-fill-mode: forwards;
+    animation-duration: 250ms;
   }
 }
 
 // @media (prefers-color-scheme: dark) {
 // }
 
+@keyframes DarckSchemeToggleChecked {
+  0% {
+    transform: translate(0px);
+    border: 1px solid #000000;
+    background-color: #ffffff;
+  }
+  100% {
+    transform: translate(20px);
+    background-color: #000000;
+    border: 1px solid #ffffff;
+  }
+}
+
+@keyframes DarckSchemeToggleUnchecked {
+  0% {
+    transform: translate(20px);
+    background-color: #000000;
+    border: 1px solid #ffffff;
+  }
+  100% {
+    transform: translate(0px);
+    border: 1px solid #000000;
+    background-color: #ffffff;
+  }
+}
