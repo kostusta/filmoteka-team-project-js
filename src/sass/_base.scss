@@ -43,6 +43,11 @@ body {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   letter-spacing: 0.04em;
+
+  animation-name: LightSchemeBodyBackground;
+  animation-fill-mode: forwards;
+  animation-duration: 250ms;
+
 }
 
 .visually-hidden {
@@ -117,5 +122,11 @@ footer {
 .button--transparent {
   background-color: transparent;
   color: $main-text-color;
+  border: 1px solid #000000;
+}
+
+.button--warning {
+  background-color: #cc0014;
+  color: #ffffff;
   border: 1px solid #000000;
 }
