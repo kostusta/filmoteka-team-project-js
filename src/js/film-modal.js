@@ -213,7 +213,7 @@ function checkHomepageForDuplicates() {
 if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 const btnQueue = document.querySelector('[data-queue]');
 	  btnQueue.classList.add("button--transparent");
-	  btnQueue.textContent = 'already added';
+	  btnQueue.textContent = 'already added to watched';
   btnQueue.setAttribute('disabled', "disabled");
   btnQueue.classList.add('card__btn--disabled');
   }
@@ -221,7 +221,7 @@ const btnQueue = document.querySelector('[data-queue]');
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
 	  btnWatched.classList.add("button--transparent");
-	  btnWatched.textContent = 'already added';
+	  btnWatched.textContent = 'already added to queue';
     btnWatched.setAttribute('disabled', "disabled");
             btnWatched.classList.add('card__btn--disabled');
 
