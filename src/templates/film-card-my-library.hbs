@@ -1,16 +1,15 @@
 <li class='item' data-id='{{id}}'>
-  <div class='thumb'><img src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt='' /></div>
+  <div class='thumb'><img class="film-label" src='https://image.tmdb.org/t/p/w500{{data.poster_path}}' alt='Film label photo' /></div>
   <div>
     <p class='item__title'>
       {{original_title}}
     </p>
     <p class='item__genre'>
-      {{genres.0.name}},
-      {{genres.1.name}}
+      {{data.genres.0.name}},
+      {{data.genres.1.name}}
       |
-      {{release_date}}
-      <span class='card__rating--orange card__rating--orange--my-lib'>{{vote_average}}</span>
+      {{data.release_date}}
+      <span class='card__rating--orange card__rating--orange--my-lib'>{{data.vote_average}}</span>
     </p>
   </div>
-
 </li>

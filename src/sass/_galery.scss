@@ -76,6 +76,11 @@
           transition: transform 300ms ease-in-out;
           transform: scale(1);
         }
+
+        &:hover {
+          display: block;
+          box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+        }
       }
 
       &__title {
@@ -92,9 +97,10 @@
         transition: transform 300ms ease-in-out;
         transform: scale(1.1);
       }
-      &:hover {
-        box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
-      }
+      // &:hover {
+      //   box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+      // }
     }
   }
 }
+
