@@ -205,6 +205,8 @@ const btnQueue = document.querySelector('[data-queue]');
   }
 	}
 }
+
+// Проверка на наличие фильма на главной и применение соответствующих стилей на кнопки
 function checkHomepageForDuplicates() {
 	const currentPage = document.querySelector('[data-home-btn]');
 
@@ -213,7 +215,7 @@ function checkHomepageForDuplicates() {
 if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 const btnQueue = document.querySelector('[data-queue]');
 	  btnQueue.classList.add("button--transparent");
-	  btnQueue.textContent = 'already added to watched';
+	  btnQueue.textContent = 'already added to queue';
   btnQueue.setAttribute('disabled', "disabled");
   btnQueue.classList.add('card__btn--disabled');
   }
@@ -221,7 +223,7 @@ const btnQueue = document.querySelector('[data-queue]');
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
 	  btnWatched.classList.add("button--transparent");
-	  btnWatched.textContent = 'already added to queue';
+	  btnWatched.textContent = 'already added to watched';
     btnWatched.setAttribute('disabled', "disabled");
             btnWatched.classList.add('card__btn--disabled');
 
