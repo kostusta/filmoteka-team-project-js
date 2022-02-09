@@ -38,7 +38,7 @@ onAuthStateChanged(auth, user => {
       .then(data => {
         filmsIds.watchedFilmsIds = data.val().watchedFilmsIds;
         filmsIds.queueFilmsIds = data.val().queueFilmsIds;
-        console.log(filmsIds);
+
         saveData('filmsIds', filmsIds);
       })
       .catch(e => console.log(e));

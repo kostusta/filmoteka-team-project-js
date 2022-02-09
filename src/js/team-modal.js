@@ -42,6 +42,9 @@ function modalOpen(curentModal) {
 }
 
 function modalClose(modalActive) {
+  if (!modalActive) {
+    return;
+  }
   if (unlock) {
     modalActive.classList.remove('open');
   }
