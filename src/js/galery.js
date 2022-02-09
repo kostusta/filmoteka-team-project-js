@@ -29,6 +29,7 @@ export function renderGalery({ results }) {
   refs.gallery.innerHTML = '';
   refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
 
+
   // console.log('Зарендерили', results);
   // console.log('~ getGenres(results)', getGenres(results));
 }
@@ -52,4 +53,5 @@ export function renderGalery({ results }) {
   });
 
   return newResults;
+
 }

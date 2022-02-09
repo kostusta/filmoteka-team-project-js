@@ -10,20 +10,11 @@
     <path d='M8 22L22 8' stroke-width='2'></path>
   </svg>
 </button>
-<div class='card__thumb'>
-  <img src='https://image.tmdb.org/t/p/w400{{poster_path}}' alt={{original_title}} />
-  <button type='button' class='trailer'>TRAILER</button>
+<div class="card__thumb">
+	<img src='https://image.tmdb.org/t/p/w400{{poster_path}}' alt={{original_title}}/>
+  <button type="button" class="trailer-btn">TRAILER</button>
 </div>
-<iframe
-  class='trailer-video'
-  data-title='{{original_title}}'
-  src='https://www.youtube.com/embed/{{videoId}}'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-  allowfullscreen
-></iframe>
-{{! <iframe class="trailer-video" data-title='dune' src="https://www.youtube.com/embed/Jd9L79koFkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> }}
+ <iframe class="trailer-video" data-title='{{original_title}}' src="https://www.youtube.com/embed/{{videoId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <div class='card__wrapper'>
   <h1 class='card__title'>{{original_title}}</h1>
@@ -54,6 +45,6 @@
   </div>
   <div class='card__buttons'>
     <button class='button button--orange card__btn' type='button' data-watched>add to Watched</button>
-    <button class='button button--transparent card__btn' type='button' data-queue>add to queue</button>
+    <button class='button button--orange card__btn' type='button' data-queue>add to queue</button>
   </div>
 </div>
