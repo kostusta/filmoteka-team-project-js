@@ -75,7 +75,11 @@ function onAddWatchedBtn(e) {
   const button = e.target;
 
   if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
-  removeMovieById(button, filmsIds.watchedFilmsIds);
+	  filmsIds.watchedFilmsIds = filmsIds.watchedFilmsIds.filter(id => id !== currentFilmId);
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to watched';
+
   saveData('filmsIds', filmsIds);
     onWatchBtnClick();
     return;
@@ -99,7 +103,10 @@ function onAddQueueBtn(e) {
   const button = e.target;
 
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
-	    removeMovieById(button, filmsIds.queueFilmsIds);
+	  filmsIds.queueFilmsIds = filmsIds.queueFilmsIds.filter(id => id !== currentFilmId);
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to queue';
   saveData('filmsIds', filmsIds);
 onQueueBtnClick();
     return;
@@ -198,6 +205,8 @@ const btnQueue = document.querySelector('[data-queue]');
   }
 	}
 }
+
+// Проверка на наличие фильма на главной и применение соответствующих стилей на кнопки
 function checkHomepageForDuplicates() {
 	const currentPage = document.querySelector('[data-home-btn]');
 
@@ -206,7 +215,7 @@ function checkHomepageForDuplicates() {
 if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 const btnQueue = document.querySelector('[data-queue]');
 	  btnQueue.classList.add("button--transparent");
-	  btnQueue.textContent = 'already added';
+	  btnQueue.textContent = 'already added to queue';
   btnQueue.setAttribute('disabled', "disabled");
   btnQueue.classList.add('card__btn--disabled');
   }
@@ -214,7 +223,7 @@ const btnQueue = document.querySelector('[data-queue]');
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
 	  btnWatched.classList.add("button--transparent");
-	  btnWatched.textContent = 'already added';
+	  btnWatched.textContent = 'already added to watched';
     btnWatched.setAttribute('disabled', "disabled");
             btnWatched.classList.add('card__btn--disabled');
 
