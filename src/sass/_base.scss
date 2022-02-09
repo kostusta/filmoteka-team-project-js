@@ -43,7 +43,6 @@ body {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   letter-spacing: 0.04em;
-
 }
 
 .visually-hidden {
@@ -55,6 +54,7 @@ body {
 }
 
 .wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
