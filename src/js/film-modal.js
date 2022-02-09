@@ -21,6 +21,7 @@ const refs = {
   libraryList: document.querySelector('.library__list'),
   modal: document.querySelector('[data-modal]'),
   modalContainer: document.querySelector('.card'),
+  trailerVideo: document.querySelector('.trailer-video'),
 };
 refs.libraryList.addEventListener('click', onOpenModal);
 let currentFilmId;
@@ -74,16 +75,11 @@ function onAddWatchedBtn(e) {
   const button = e.target;
 
   if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
-filmsIds.watchedFilmsIds = filmsIds.watchedFilmsIds.filter(id => id !== currentFilmId);
+  removeMovieById(button, filmsIds.watchedFilmsIds);
   saveData('filmsIds', filmsIds);
     onWatchBtnClick();
-button.classList.remove('button--transparent');
-button.classList.add('button--orange');
-button.textContent = 'add to watched';
-
     return;
   }
-  removeMovieById(button, filmsIds.watchedFilmsIds);
   
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -103,12 +99,9 @@ function onAddQueueBtn(e) {
   const button = e.target;
 
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
-	filmsIds.queueFilmsIds = filmsIds.queueFilmsIds.filter(id => id !== currentFilmId);
+	    removeMovieById(button, filmsIds.queueFilmsIds);
   saveData('filmsIds', filmsIds);
 onQueueBtnClick();
-button.classList.remove('button--transparent');
-button.classList.add('button--orange');
-button.textContent = 'add to queue';
     return;
   }
 
@@ -160,7 +153,6 @@ function addEventListeners() {
   addQueueBtn.addEventListener('click', onAddQueueBtn);
   const trailerBtn = document.querySelector('.trailer-btn');
   trailerBtn.addEventListener('click', onTrailerBtnClick);
-  const trailerVideo = document.querySelector('.trailer-video');
 }
 
 
@@ -177,11 +169,15 @@ async function fetch(name) {
 // Функция обработки события на кнопку открытия трейлера
 function onTrailerBtnClick(e) {
   const trailer = e.target.parentNode.nextElementSibling;
+  const x = document.querySelector('.close-cross');
+
   currentTrailerTitle = trailer.dataset.title;
   fetch(currentTrailerTitle).then(trailerId => {
     trailer.setAttribute('src', `https://www.youtube.com/embed/${trailerId}`);
   });
+
   trailer.classList.add('active');
+  x.classList.add('close-cross-white');
 }
 
 // Проверка на наличие фильма в библиотеке и применение соответствующих стилей на кнопки
@@ -252,14 +248,11 @@ button.textContent = `remove from ${name}`;
     }
 }
 
-// todo функцию удаления фильма
+// Функция удаления фильма
 function removeMovieById(button, array) {
-   
 array = array.filter(id => id !== currentFilmId);
-  saveData('filmsIds', filmsIds);
-    onWatchBtnClick();
 button.classList.remove('button--transparent');
 button.classList.add('button--orange');
 button.textContent = 'add to watched';
-  
 }
+
