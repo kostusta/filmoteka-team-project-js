@@ -43,6 +43,7 @@
       width: 280px;
       height: 443px;
       margin-top: 20px;
+      cursor: pointer;
 
       @media screen and (min-width: 768px) {
         width: 294px;
@@ -59,6 +60,8 @@
       .thumb {
         height: 398px;
         width: 280px;
+        overflow: hidden;
+
         @media screen and (min-width: 768px) {
           width: 294px;
         }
@@ -70,16 +73,34 @@
           height: 100%;
           width: 100%;
           object-fit: cover;
+          transition: transform 300ms ease-in-out;
+          transform: scale(1);
+        }
+
+        &:hover {
+          display: block;
+          box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
         }
       }
 
-      p {
+      &__title {
         margin-top: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
 
-      span {
+      &__genre {
         color: #ff6b08;
       }
+      &:hover img {
+        transition: transform 300ms ease-in-out;
+        transform: scale(1.1);
+      }
+      // &:hover {
+      //   box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+      // }
     }
   }
 }
+

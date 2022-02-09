@@ -1,8 +1,5 @@
 // Стили для home header partial
 
-.header-home {
-  background: radial-gradient(circle at center, #000103 85%, #26150b, #040200);
-}
 .header-container-home {
   min-height: 230px;
   max-width: 1024px;
@@ -58,7 +55,8 @@
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
-  line-height: 35px;
+  line-height: 1.17;
+  letter-spacing: 0.03em;
 
   color: $main-bg-color;
 
@@ -95,7 +93,8 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
 
   color: $main-bg-color;
 
@@ -103,7 +102,7 @@
 }
 
 .nav-list__item + .nav-list__item {
-  margin-left: 39px;
+  margin-left: 38px;
 }
 .search-position {
   position: relative;
@@ -169,7 +168,8 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
 
   color: $main-bg-color;
 

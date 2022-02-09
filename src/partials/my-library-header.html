@@ -1,4 +1,24 @@
-<!-- FT-12 Сверстать хедер для страницы "My Library" (мобилка, планшет, десктоп) -->
-
 <section class="container">
+  <nav class="header-nav">
+    <a class="header__home-link" href="./index.html" lang="en" target="_self">
+      <svg class="header__home-link-icon" id="header-home-link" width="24" height="24">
+        <use href="./images/symbol-defs.svg#icon-logo"></use>
+      </svg>
+      <span class="header__home-link-text">Filmoteka</span>
+    </a>
+    <ul class="site-nav">
+      <li class="site-nav__item">
+        <a class="site-nav__link" href="./index.html" target="_self" data-home-btn>home</a>
+      </li>
+      <li class="site-nav__item">
+        <a class="site-nav__link site-nav__link--current" href="./my-library.html" target="_self" data-lib-btn
+          >my library</a
+        >
+      </li>
+    </ul>
+  </nav>
+  <div class="button-list">
+    <button class="button button--orange" type="button" data-watched-btn>watched</button>
+    <button class="button button--transparent" type="button" data-queue-btn>queue</button>
+  </div>
 </section>

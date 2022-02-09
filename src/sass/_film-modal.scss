@@ -1,15 +1,15 @@
 // Стили для film-modal partial
 
 .card {
-  border: 1px solid #000;
+  position: relative;
   width: 100%;
   margin: 0 auto;
   position: relative;
   padding: 48px 20px 40px 20px;
-
   @media screen and (min-width: 320px) {
     width: 280px;
   }
+
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -22,67 +22,74 @@
   }
 }
 
-.card__image {
-  max-width: 100%;
+.card__thumb {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
   margin-bottom: 30px;
-
   @media screen and (min-width: 768px) {
+    width: 50%;
+    margin-bottom: 0;
     margin-right: 30px;
   }
 }
 
 .card__wrapper {
-  padding-top: 30px;
   @media screen and (min-width: 768px) {
-    width: 264px;
+    width: 50%;
     padding-top: 0;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 396px;
   }
 }
 
 .card__description {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 25px;
   display: flex;
   justify-content: space-between;
-  @media screen and (min-width: 1024px) {
+  align-items: end;
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
     justify-content: left;
   }
 }
 
 .card__description--1 {
+  @media screen and (min-width: 320px) {
+    margin-right: 40px;
+  }
+
   @media screen and (min-width: 1024px) {
     margin-right: 85px;
   }
 }
 
 .card__title {
+  color: $main-text-color;
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
-
+  margin-bottom: 20px;
   @media screen and (min-width: 1024px) {
     font-size: 30px;
     line-height: 35px;
   }
 }
-
 .card__label {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: $modal-subtitle-text-color;
-  margin-bottom: 10px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .card__rating {
-  margin-bottom: 10px;
+  color: $main-text-color;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .card__rating--orange {
@@ -98,7 +105,7 @@
   border-radius: 5px;
 }
 .card__about {
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 .card__subtitle {
   font-weight: 500;
@@ -112,6 +119,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
+  color: $main-text-color;
 }
 
 .card__buttons {
@@ -126,30 +134,43 @@
 
 .card__btn {
   width: 112px;
-
+  box-shadow: 2px 3px #999;
+  outline: none;
   @media screen and (min-width: 768px) {
-    width: 125px;
+    min-width: 120px;
   }
   @media screen and (min-width: 1024px) {
     min-width: 136px;
-    margin-right: 15px;
   }
+  &:active {
+    box-shadow: 1px 1px #777;
+    transform: translateY(4px);
+  }
+  &:not(:last-child) {
+    @media screen and (min-width: 1024px) {
+      margin-right: 15px;
+    }
+  }
+}
 
-  //   &:hover {
-  //     background-color: #ff6b01;
-  //     color: #ffffff;
-  //     border: hidden;
-  //   }
+.card__btn--disabled {
+  background-color: #e9e9e9;
+  box-shadow: none;
+  cursor: auto;
+  border: none;
+  color: #000;
 }
 
 .close-button {
   position: absolute;
   top: 8px;
   right: 8px;
+  z-index: 6;
   padding: 5px;
   background-color: transparent;
   border: transparent;
   outline: none;
+  line-height: 0;
   cursor: pointer;
 
   &:hover > .close-cross,
@@ -160,6 +181,10 @@
 
 .close-cross {
   stroke: $main-text-color;
+}
+
+.close-cross-white {
+  stroke: #fff;
 }
 
 .backdrop {
@@ -182,18 +207,82 @@
 }
 
 .modal {
-  transition-property: all;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: auto;
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 528px;
-  min-height: 581px;
   background-color: #fff;
   transform: translate(-50%, -50%) scale(1);
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (max-width: 767px) {
+    height: 100%;
+  }
 
   .backdrop.is-hidden & {
     transform: translate(-50%, -50%) scale(2);
   }
+}
+
+.trailer-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  @media screen and (min-width: 767px) {
+    font-size: 16px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 22px;
+  }
+
+  .backdrop.is-hidden & {
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+.trailer-btn::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  margin-right: 5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #fff;
+
+  @media screen and (min-width: 767px) {
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid #fff;
+    margin-right: 7px;
+  }
+  @media screen and (min-width: 1024px) {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 18px solid #fff;
+  }
+}
+.trailer-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    height: 100%;
+  }
+}
+.trailer-video.active {
+  display: block;
 }

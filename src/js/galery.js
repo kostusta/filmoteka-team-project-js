@@ -1,29 +1,60 @@
-import axios from 'axios';
-const refs = {
+import filmCard from '../templates/film-card.hbs';
+import { fetchMovies } from './api';
+import genres from './genres.json';
+export const refs = {
   gallery: document.querySelector('.library__list'),
+  modal: document.querySelector('.card'),
+  closeModal: document.querySelector('.close-button'),
+  authBtn: document.querySelector('.auth-btn'),
+  authModal: document.querySelector('.modal-auth'),
+  authForm: document.querySelector('.auth-form'),
+  signInBtn: document.querySelector('.sign-in-btn'),
+  registrBtn: document.querySelector('.registr-btn'),
+  authClose: document.querySelector('.login_wr__close-button'),
 };
 
-const template = ({ poster_path, backdrop_path, original_title }) => {
-  return `<li class="item">
-        <a class="card-link" href="https://image.tmdb.org/t/p/w500${backdrop_path}">
-          <div class="thumb"><img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="" /></div>
-          <p>
-            ${original_title} <br />
-            <span>Drama, Action | 2020</span>
-          </p>
-        </a>
-      </li>`;
-};
+export const namesOfGenres = new Map();
+genres.genres.map(genre => {
+  namesOfGenres.set(genre.id, genre.name);
+});
 
 export function getColection() {
-  const url = 'https://api.themoviedb.org/3/trending/movie/week';
-  const parmams = {
-    api_key: '0a0eacc01c98f8ef04ac7ca82867ea4e',
-  };
-
-  return axios.get(`${url}?api_key=${parmams.api_key}&total_results=100`).then(({ data }) => {
-    const markup = data.results.map(template);
-
-    refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
+  fetchMovies().then(data => {
+    renderGalery(data);
   });
+}
+
+export function renderGalery({ results }) {
+  const markup = getGenres(results).map(filmCard);
+  refs.gallery.innerHTML = '';
+  refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
+
+}
+
+export function getGenres(results) {
+  // console.log('Зарендерили', results);
+  // console.log('~ getGenres(results)', getGenres(results));
+  const newResults = results.map(film => {
+    const { genre_ids, release_date } = film;
+
+    if (genre_ids.length > 2) {
+      genre_ids.splice(2);
+    }
+
+    const newName = genre_ids.map(genreId => {
+      return namesOfGenres.get(genreId);
+    });
+
+    film.release_year = release_date.split('').slice(0, 4).join('');
+    if (newName.length === 0) {
+      film.genreWithNames = 'Action';
+      return film;
+    }
+    film.genreWithNames = newName.length > 1 ? `${newName[0]}, ${newName[1]}` : `${newName[0]}`;
+
+    return film;
+  });
+
+  return newResults;
+
 }
