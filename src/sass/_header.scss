@@ -1,6 +1,5 @@
 // Стили для my library header partial
 
-
 .header {
   max-width: 1024px;
   min-width: 320px;
@@ -11,11 +10,11 @@
   padding-top: 46px;
   padding-bottom: 65px;
 
-  &--home{
+  &--home {
     background: linear-gradient(180deg, rgb(0, 0, 0), rgb(15, 15, 15));
   }
 
-  &--my-lib{
+  &--my-lib {
     background: linear-gradient(180deg, rgb(37, 0, 4), rgb(15, 15, 15));
   }
 
@@ -77,12 +76,6 @@
         margin-right: 38px;
       }
     }
-    &__auth-btn {
-      background: transparent;
-      width: 63px;
-      text-align: center;
-      border: none;
-    }
     &__link,
     &__auth-btn {
       text-decoration: none;
@@ -93,6 +86,11 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: $header-text-color;
+      background: transparent;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      padding: 0;
 
       &::after {
         content: '';

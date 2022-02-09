@@ -75,7 +75,11 @@ function onAddWatchedBtn(e) {
   const button = e.target;
 
   if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
-  removeMovieById(button, filmsIds.watchedFilmsIds);
+	  filmsIds.watchedFilmsIds = filmsIds.watchedFilmsIds.filter(id => id !== currentFilmId);
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to watched';
+
   saveData('filmsIds', filmsIds);
     onWatchBtnClick();
     return;
@@ -99,7 +103,10 @@ function onAddQueueBtn(e) {
   const button = e.target;
 
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
-	    removeMovieById(button, filmsIds.queueFilmsIds);
+	  filmsIds.queueFilmsIds = filmsIds.queueFilmsIds.filter(id => id !== currentFilmId);
+button.classList.remove('button--transparent');
+button.classList.add('button--orange');
+button.textContent = 'add to queue';
   saveData('filmsIds', filmsIds);
 onQueueBtnClick();
     return;
