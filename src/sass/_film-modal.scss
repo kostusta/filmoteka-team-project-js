@@ -77,15 +77,19 @@
   font-size: 12px;
   line-height: 16px;
   color: $modal-subtitle-text-color;
-  margin-bottom: 10px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .card__rating {
   color: $main-text-color;
-  margin-bottom: 10px;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .card__rating--orange {
@@ -149,10 +153,19 @@
   }
 }
 
+.card__btn--disabled {
+  background-color: #e9e9e9;
+  box-shadow: none;
+  cursor: auto;
+  border: none;
+  color: #000;
+}
+
 .close-button {
   position: absolute;
   top: 8px;
   right: 8px;
+  z-index: 6;
   padding: 5px;
   background-color: transparent;
   border: transparent;
@@ -168,6 +181,10 @@
 
 .close-cross {
   stroke: $main-text-color;
+}
+
+.close-cross-white {
+  stroke: #fff;
 }
 
 .backdrop {
@@ -209,7 +226,7 @@
   }
 }
 
-.trailer {
+.trailer-btn {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -231,7 +248,7 @@
     transform: translate(-50%, -50%) scale(2);
   }
 }
-.trailer::before {
+.trailer-btn::before {
   content: '';
   display: inline-block;
   width: 0;
@@ -259,28 +276,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 50%;
   display: none;
+
+  @media screen and (min-width: 768px) {
+    height: 100%;
+  }
 }
 .trailer-video.active {
   display: block;
-}
-
-// стили галереи
-.item {
-  cursor: pointer;
-
-  .thumb {
-    overflow: hidden;
-
-    img {
-      transition: transform 300ms ease-in-out;
-      transform: scale(1);
-    }
-  }
-
-  &:hover img {
-    transition: transform 300ms ease-in-out;
-    transform: scale(1.1);
-  }
 }

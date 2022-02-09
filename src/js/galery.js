@@ -28,9 +28,12 @@ export function renderGalery({ results }) {
   const markup = getGenres(results).map(filmCard);
   refs.gallery.innerHTML = '';
   refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
+
 }
 
 export function getGenres(results) {
+  // console.log('Зарендерили', results);
+  // console.log('~ getGenres(results)', getGenres(results));
   const newResults = results.map(film => {
     const { genre_ids, release_date } = film;
 
@@ -53,4 +56,5 @@ export function getGenres(results) {
   });
 
   return newResults;
+
 }
