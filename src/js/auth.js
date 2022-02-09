@@ -65,7 +65,7 @@ const loginEmailPassword = async () => {
     refs.authModal.classList.toggle('is-hidden');
     return userCredential;
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
   }
 };
 
@@ -78,7 +78,7 @@ const createAccount = async () => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     refs.authModal.classList.toggle('is-hidden');
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
   }
 };
 
@@ -89,12 +89,10 @@ const monitorAuthState = async () => {
       refs.authBtn.removeEventListener('click', onAuthModalOpen);
       refs.authBtn.textContent = `Log out`;
       refs.authBtn.addEventListener('click', logOut);
-      Notify.success(`Вы вошли как ${user.email}`);
     } else {
       refs.authBtn.removeEventListener('click', logOut);
       refs.authBtn.textContent = 'Log in';
       refs.authBtn.addEventListener('click', onAuthModalOpen);
-      Notify.warning('Вы не вошли в аккаунт!');
     }
   });
 };
@@ -102,7 +100,6 @@ const monitorAuthState = async () => {
 // Выйти с аккаунта
 const logOut = async () => {
   await signOut(auth);
-  Notify.success('Вы вышли с аккаунта.');
 };
 
 monitorAuthState();
@@ -111,7 +108,6 @@ monitorAuthState();
 export function writeUserData(user, filmsIds) {
   //Текущий пользователь, если пользователь не вошел равен null
   if (!user) {
-    Notify.warning('Вы не выполнили вход.');
     return;
   }
 
@@ -126,7 +122,6 @@ export function writeUserData(user, filmsIds) {
 // readUserData(user).then(data => console.log(data.val().queueFilmsIds));
 export async function readUserData(user) {
   if (!user) {
-    Notify.warning('Вы не выполнили вход. readUserData');
     return;
   }
   const dbRef = ref(database);

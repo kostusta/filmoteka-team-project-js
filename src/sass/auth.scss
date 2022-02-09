@@ -44,8 +44,20 @@
 }
 
 #range2 .auth-form {
+  position: relative;
   padding-top: 20px;
   text-align: center;
+
+  .auth-account-img {
+    position: absolute;
+    top: 28px;
+    left: 65px;
+  }
+  .auth-edit-img {
+    position: absolute;
+    top: 93px;
+    left: 65px;
+  }
 }
 
 #range2 input[type='email'],
@@ -56,12 +68,12 @@
   outline: 0;
 }
 
-#range2 input[type='email'] {
-  background: url(../images/auth/baseline_account_circle_black_24dp.png) no-repeat left 10px center;
-}
-#range2 input[type='password'] {
-  background: url(../images/auth/baseline_edit_black_24dp.png) no-repeat left 10px center;
-}
+// #range2 input[type='email'] {
+//   background: url(../images/auth/baseline_account_circle_black_24dp.png) no-repeat left 10px center;
+// }
+// #range2 input[type='password'] {
+//   background: url(../images/auth/baseline_edit_black_24dp.png) no-repeat left 10px center;
+// }
 
 #range2 input[type='email'],
 #range2 input[type='password'] {

@@ -1,6 +1,6 @@
 import filmCard from '../templates/film-card.hbs';
 import { fetchMovies } from './api';
-
+import genres from './genres.json';
 export const refs = {
   gallery: document.querySelector('.library__list'),
   modal: document.querySelector('.card'),
@@ -13,6 +13,11 @@ export const refs = {
   authClose: document.querySelector('.login_wr__close-button'),
 };
 
+const namesOfGenres = new Map();
+genres.genres.map(genre => {
+  namesOfGenres.set(genre.id, genre.name);
+});
+
 export function getColection() {
   fetchMovies().then(data => {
     renderGalery(data);
@@ -20,7 +25,31 @@ export function getColection() {
 }
 
 export function renderGalery({ results }) {
-  const markup = results.map(filmCard);
+  const markup = getGenres(results).map(filmCard);
   refs.gallery.innerHTML = '';
   refs.gallery.insertAdjacentHTML('beforeend', markup.join(''));
+
+  // console.log('Зарендерили', results);
+  // console.log('~ getGenres(results)', getGenres(results));
+}
+
+function getGenres(results) {
+  const newResults = results.map(film => {
+    const { genre_ids, release_date } = film;
+
+    if (genre_ids.length > 2) {
+      genre_ids.splice(2);
+    }
+
+    const newName = genre_ids.map(genreId => {
+      return namesOfGenres.get(genreId);
+    });
+
+    film.release_year = release_date.split('').slice(0, 4).join('');
+    film.genreWithNames = newName.length > 1 ? `${newName[0]}, ${newName[1]}` : `${newName[0]}`;
+
+    return film;
+  });
+
+  return newResults;
 }
