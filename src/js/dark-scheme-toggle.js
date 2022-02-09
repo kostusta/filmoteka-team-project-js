@@ -68,3 +68,5 @@ function userThemeSetingsDetection() {
 }
 
 userThemeSetingsDetection();
+
+console.log(refs.paginationBtnTextleColor)
