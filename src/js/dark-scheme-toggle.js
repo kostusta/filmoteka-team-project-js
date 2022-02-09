@@ -26,6 +26,16 @@ export function darkThemeOff() {
   refs.footerLinkUnderline.classList.remove('underline--dark-scheme');
   refs.footerDomEl.classList.remove('footer--dark-scheme');
   refs.footerDomEl.classList.add('footer');
+  refs.filmModal.classList.remove('modal-background--dark-scheme');
+  refs.teamModalBg.classList.remove('modal-background--dark-scheme');
+  
+  refs.teamModalListTextColor.map(item => {
+    item.classList.remove('main-text-color--dark-scheme');
+  });
+
+  refs.teamModalListTitleColor.map(item => {
+    item.classList.remove('main-text-color--dark-scheme');
+  });
 }
 
 export function darkThemeOn() {
@@ -37,6 +47,16 @@ export function darkThemeOn() {
   refs.footerLinkUnderline.classList.add('underline--dark-scheme');
   refs.footerDomEl.classList.add('footer--dark-scheme');
   refs.footerDomEl.classList.remove('footer');
+  refs.filmModal.classList.add('modal-background--dark-scheme');
+  refs.teamModalBg.classList.add('modal-background--dark-scheme');
+
+  refs.teamModalListTextColor.map(item => {
+    item.classList.add('main-text-color--dark-scheme');
+  });
+
+  refs.teamModalListTitleColor.map(item => {
+    item.classList.add('main-text-color--dark-scheme');
+  });
 }
 
 function userThemeSetingsDetection() {
