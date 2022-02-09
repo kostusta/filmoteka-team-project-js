@@ -8,8 +8,9 @@ import LocalStorage from './local-storage-api';
 const filmApi = new FilmsApi();
 const storage = new LocalStorage();
 
-export function filmCardsMarkupCreate(data) {
-  return data.map(item => filmCard(item.data)).join('');
+export async function filmCardsMarkupCreate(data) {
+  const markup = await releaseYear(data).map(filmCard);
+  return markup.join('');
 }
 
 export function renderMarkup(element, markup) {
@@ -18,6 +19,47 @@ export function renderMarkup(element, markup) {
 
 export function clearContainerMarkup(containerRef) {
   containerRef.innerHTML = '';
+}
+
+function releaseYear(data) {
+  const tempData = [...data];
+
+  const newData = tempData.map(item => {
+    const year = item.data.release_date.slice(0, 4);
+    item.data.release_date = year;
+    return item;
+  });
+  return newData;
+}
+
+async function watchedBtnHandler() {
+  try {
+    const filmApiResp = await Promise.all(
+      storage.getWatchedFilmsIds().map(filmId => {
+        return filmApi.fetchMovieById(filmId);
+      }),
+    );
+    const filmCardsMarkup = await filmCardsMarkupCreate(filmApiResp);
+    clearContainerMarkup(refs.libraryList);
+    renderMarkup(refs.libraryList, filmCardsMarkup);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+async function queueBtnHandler() {
+  try {
+    const filmApiResp = await Promise.all(
+      storage.getqueueFilmsIds().map(filmId => {
+        return filmApi.fetchMovieById(filmId);
+      }),
+    );
+    const filmCardsMarkup = await filmCardsMarkupCreate(filmApiResp);
+    clearContainerMarkup(refs.libraryList);
+    renderMarkup(refs.libraryList, filmCardsMarkup);
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 function watchedBtnClickActivation() {
@@ -34,35 +76,20 @@ function queueBtnClickActivation() {
   refs.watchedBtn.classList.remove('button--orange');
 }
 
-export function onWatchBtnClick() {
+export async function onWatchBtnClick() {
   watchedBtnClickActivation();
 
   if (storage.getWatchedFilmsIds().length === 0) {
     clearContainerMarkup(refs.libraryList);
-    const markup = emptyLs();
+    const markup = await emptyLs();
     renderMarkup(refs.libraryList, markup);
-   //  document.querySelector('.empty-message').addClasslist('is-shown');
     return;
   }
 
-
-  Promise.all(
-    storage.getWatchedFilmsIds().map(filmId => {
-      return filmApi.fetchMovieById(filmId);
-    }),
-  )
-    .then(data => {
-      return filmCardsMarkupCreate(data);
-    })
-    .then(markup => {
-      clearContainerMarkup(refs.libraryList);
-      renderMarkup(refs.libraryList, markup);
-    })
-    .catch();
+  watchedBtnHandler();
 }
 
-export function onQueueBtnClick() {
-
+export async function onQueueBtnClick() {
   queueBtnClickActivation();
 
   if (storage.getqueueFilmsIds().length === 0) {
@@ -72,19 +99,7 @@ export function onQueueBtnClick() {
     return;
   }
 
-  Promise.all(
-    storage.getqueueFilmsIds().map(filmId => {
-      return filmApi.fetchMovieById(filmId);
-    }),
-  )
-    .then(data => {
-      return filmCardsMarkupCreate(data);
-    })
-    .then(markup => {
-      clearContainerMarkup(refs.libraryList);
-      renderMarkup(refs.libraryList, markup);
-    })
-    .catch();
+  queueBtnHandler();
 }
 
 function start() {
@@ -95,7 +110,13 @@ function start() {
 start();
 
 // console.log(
-//   filmApi.fetchMovieById(774825).then(r => {
-//     console.dir(r);
-//   }),
+//   filmApi
+//     .fetchMovieById(774825)
+//     .then(r => {
+//       console.log(r);
+//       return r;
+//     })
+//     .then(r => {
+//       return r.data.release_date.slice(0, 4);
+//     }),
 // );
