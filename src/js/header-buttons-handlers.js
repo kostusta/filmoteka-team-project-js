@@ -61,7 +61,6 @@ export function onWatchBtnClick() {
 }
 
 function onQueueBtnClick() {
-
   queueBtnClickActivation();
 
   if (storage.getqueueFilmsIds().length === 0) {
