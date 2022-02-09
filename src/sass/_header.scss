@@ -1,4 +1,6 @@
 // Стили для my library header partial
+
+
 .header {
   max-width: 1024px;
   min-width: 320px;
@@ -8,6 +10,14 @@
   display: flex;
   padding-top: 46px;
   padding-bottom: 65px;
+
+  &--home{
+    background: linear-gradient(180deg, rgb(0, 0, 0), rgb(15, 15, 15));
+  }
+
+  &--my-lib{
+    background: linear-gradient(180deg, rgb(37, 0, 4), rgb(15, 15, 15));
+  }
 
   @media screen and (min-width: 768px) {
     padding-top: 41px;

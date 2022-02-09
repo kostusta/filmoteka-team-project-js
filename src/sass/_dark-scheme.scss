@@ -1,0 +1,27 @@
+.body--dark-scheme {
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+.container-footer.container-footer--dark-scheme {
+  background: linear-gradient(180deg, rgb(15, 15, 15), rgb(0, 0, 0));
+  color: #ffffff;
+}
+
+.footer--dark-scheme {
+  margin-top: 60px;
+  background: linear-gradient(180deg, rgb(15, 15, 15), rgb(0, 0, 0));
+
+  @media screen and (min-width: 320px) {
+    margin-top: 40px;
+  }
+}
+
+.team-modal-link.team-modal-link--dark-scheme {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.underline.underline--dark-scheme {
+  color: #ffffff;
+}

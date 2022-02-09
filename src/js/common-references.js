@@ -1,5 +1,6 @@
 export const refs = {
   // header refs
+  headerDomEl: document.querySelector('header'),
   header: document.querySelector('.header'),
   homeBtn: document.querySelector('[data-home-btn]'),
   libBtn: document.querySelector('[data-lib-btn]'),
@@ -15,6 +16,7 @@ export const refs = {
   toggleTrack: document.querySelector('.toggle__track'),
   toggle: document.querySelector('.toggle'),
   body: document.querySelector('body'),
+  footerDomEl: document.querySelector('footer'),
   footer: document.querySelector('footer .container'),
   footerLink: document.querySelector('.team-modal-link'),
   footerLinkUnderline: document.querySelector('.underline'),
