@@ -47,6 +47,7 @@ body {
   animation-name: LightSchemeBodyBackground;
   animation-fill-mode: forwards;
   animation-duration: 250ms;
+
 }
 
 .visually-hidden {
@@ -58,6 +59,7 @@ body {
 }
 
 .wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
