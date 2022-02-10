@@ -1,8 +1,8 @@
 import Api from './apiMoviesSearch';
-import filmCard from '../templates/movie-card.hbs';
+import filmCardSearch from '../templates/filmCardSearch';
+// import filmCard from '../templates/movie-card.hbs';
 import { startPreloader, stopPreloader } from './preloader';
 import { pagination } from './pagination';
-import { getGenres } from './galery';
 
 const api = new Api();
 
@@ -101,6 +101,6 @@ function clearMovieCardContainer() {
 }
 
 async function appendMovieCardMarkup(data) {
-  const markup = await filmCard(getGenres(data));
+  const markup = data.map(filmCardSearch).join('');
   cardList.innerHTML = markup;
 }
