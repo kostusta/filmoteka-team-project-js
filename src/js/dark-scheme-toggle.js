@@ -49,15 +49,18 @@ export function darkThemeOn() {
   refs.footerDomEl.classList.remove('footer');
   refs.filmModal.classList.add('modal-background--dark-scheme');
   refs.teamModalBg.classList.add('modal-background--dark-scheme');
-
   refs.teamModalListTextColor.map(item => {
     item.classList.add('main-text-color--dark-scheme');
   });
-
   refs.teamModalListTitleColor.map(item => {
     item.classList.add('main-text-color--dark-scheme');
   });
 }
+
+    // todo=====================================
+    item.classList.add('social-list-icon--dark-scheme');
+    item.classList.add('team-close-cross--dark-scheme');
+
 
 function userThemeSetingsDetection() {
   window.addEventListener('load', () => {

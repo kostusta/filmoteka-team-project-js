@@ -3,8 +3,9 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
   overflow-y: auto;
   overflow-x: hidden;
   opacity: 0;
@@ -29,13 +30,14 @@
   align-items: center;
   justify-content: center;
   padding: 20px 10px;
+  overflow: auto;
 }
 
 .team-modal-content {
   background-color: #fff;
   color: black;
-  max-width: 1240px;
-  padding: 10px;
+  max-width: 1024px;
+  padding: 30px 20px;
   position: relative;
   transition: all 0.8s ease 0s;
   opacity: 0;
@@ -43,30 +45,25 @@
 }
 
 .team-modal-close {
-  font-weight: bold;
   position: absolute;
-  right: 20px;
+  right: 10px;
   top: 10px;
   font-size: 20px;
-  color: black;
 
-  &:hover,
-  &:focus {
-    color: #ff6b08;
+  &:hover > .team-close-cross,
+  &:focus > .team-close-cross {
+    stroke: $accent-text-color;
   }
 }
 
 // ============CARDS=================
-.team {
-  padding-top: 40px;
-}
 
 .team-title {
-  margin-top: 25px;
+  margin-bottom: 25px;
   text-align: center;
   color: #ff6b08;
   font-weight: bold;
-  font-size: 23px;
+  font-size: 28px;
   line-height: 1.187;
   text-align: center;
   letter-spacing: 0.06em;
@@ -91,7 +88,7 @@
 }
 
 .team-list-item {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   border-radius: 10px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
@@ -162,10 +159,30 @@
   .team-list-item {
     margin-right: 10px;
   }
+}
 
-  // .team1-item {
-  // }
+.team-close-cross {
+  stroke: $main-text-color;
+}
 
-  // @media screen and (min-width: 1024px) {
-  // }
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 6;
+  padding: 5px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  line-height: 0;
+  cursor: pointer;
+
+  &:hover > .close-cross,
+  &:focus > .close-cross {
+    stroke: $accent-text-color;
+  }
+}
+
+.close-cross {
+  stroke: $main-text-color;
 }
