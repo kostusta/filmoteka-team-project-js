@@ -44,6 +44,10 @@ body {
   font-style: normal;
   letter-spacing: 0.04em;
 
+  animation-name: LightSchemeBodyBackground;
+  animation-fill-mode: forwards;
+  animation-duration: 250ms;
+
 }
 
 .visually-hidden {
@@ -55,6 +59,7 @@ body {
 }
 
 .wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -117,5 +122,11 @@ footer {
 .button--transparent {
   background-color: transparent;
   color: $main-text-color;
+  border: 1px solid #000000;
+}
+
+.button--warning {
+  background-color: #cc0014;
+  color: #ffffff;
   border: 1px solid #000000;
 }

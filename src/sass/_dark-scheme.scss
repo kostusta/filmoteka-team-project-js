@@ -1,6 +1,9 @@
 .body--dark-scheme {
-  background-color: #0f0f0f;
-  color: #ffffff;
+  // background-color: #0f0f0f;
+  // color: #ffffff;
+  animation-name: DarckSchemeBodyBackground;
+  animation-fill-mode: forwards;
+  animation-duration: 250ms;
 }
 
 .container-footer.container-footer--dark-scheme {
@@ -24,4 +27,50 @@
 
 .underline.underline--dark-scheme {
   color: #ffffff;
+}
+
+.modal-background--dark-scheme {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+
+}
+
+.team-modal .main-text-color--dark-scheme {
+  color: #ffffff;
+}
+
+.tui-pagination .tui-page-btn.tui-page-btn--dark-scheme {
+  color: #ffffff;
+
+  &:hover,
+  &:focus {
+    color: $main-text-color;
+    //background: #ff6b08;
+    border-color: #ff6b08;
+    border-radius: 5px;
+  }
+}
+
+.thumb--dark-scheme {
+  box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes DarckSchemeBodyBackground {
+  0% {
+    background: $main-bg-color;
+    color: $main-text-color;
+  }
+  100% {
+    background-color: #0f0f0f;
+    color: #ffffff;
+  }
+}
+@keyframes LightSchemeBodyBackground {
+  0% {
+    background-color: #0f0f0f;
+    color: #ffffff;
+  }
+  100% {
+    background: $main-bg-color;
+    color: $main-text-color;
+  }
 }

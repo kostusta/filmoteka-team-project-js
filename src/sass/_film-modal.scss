@@ -62,7 +62,7 @@
 }
 
 .card__title {
-  color: $main-text-color;
+  // color: $main-text-color;
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
@@ -83,7 +83,7 @@
 }
 
 .card__rating {
-  color: $main-text-color;
+  // color: $main-text-color;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -103,6 +103,7 @@
   background-color: $footer-bg-color;
   padding: 1px 4px;
   border-radius: 5px;
+  color: $main-text-color;
 }
 .card__about {
   margin-bottom: 20px;
@@ -119,7 +120,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
-  color: $main-text-color;
+  // color: $main-text-color;
 }
 
 .card__buttons {

@@ -11,11 +11,17 @@
   padding-bottom: 65px;
 
   &--home {
-    background: linear-gradient(180deg, rgb(0, 0, 0), rgb(15, 15, 15));
+    animation-name: homeHeaderBackground;
+    animation-fill-mode: forwards;
+    animation-duration: 250ms;
+    // background: linear-gradient(180deg, rgb(0, 0, 0), rgb(15, 15, 15));
   }
 
   &--my-lib {
-    background: linear-gradient(180deg, rgb(37, 0, 4), rgb(15, 15, 15));
+    animation-name: libHeaderBackground;
+    animation-fill-mode: forwards;
+    animation-duration: 250ms;
+    // background: linear-gradient(180deg, rgb(37, 0, 4), rgb(15, 15, 15));
   }
 
   @media screen and (min-width: 768px) {
@@ -314,4 +320,21 @@
   font-size: 14px;
   line-height: 1.14;
   color: #ff001b;
+}
+
+@keyframes homeHeaderBackground {
+  0% {
+    background: linear-gradient(180deg, rgb(37, 0, 4), rgb(15, 15, 15));
+  }
+  100% {
+    background: linear-gradient(180deg, rgb(0, 0, 0), rgb(15, 15, 15));
+  }
+}
+@keyframes libHeaderBackground {
+  0% {
+    background: linear-gradient(180deg, rgb(0, 0, 0), rgb(15, 15, 15));
+  }
+  100% {
+    background: linear-gradient(180deg, rgb(37, 0, 4), rgb(15, 15, 15));
+  }
 }

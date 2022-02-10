@@ -76,7 +76,7 @@ function onAddWatchedBtn(e) {
 
   if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 	  filmsIds.watchedFilmsIds = filmsIds.watchedFilmsIds.filter(id => id !== currentFilmId);
-button.classList.remove('button--transparent');
+button.classList.remove('button--warning');
 button.classList.add('button--orange');
 button.textContent = 'add to watched';
 
@@ -104,7 +104,7 @@ function onAddQueueBtn(e) {
 
   if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 	  filmsIds.queueFilmsIds = filmsIds.queueFilmsIds.filter(id => id !== currentFilmId);
-button.classList.remove('button--transparent');
+button.classList.remove('button--warning');
 button.classList.add('button--orange');
 button.textContent = 'add to queue';
   saveData('filmsIds', filmsIds);
@@ -194,13 +194,13 @@ function checkLibraryForDuplicates() {
 	if(currentPage.classList.contains('site-nav__link--current')){
 	    	  if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 const btnQueue = document.querySelector('[data-queue]');
-	  btnQueue.classList.add("button--transparent");
+	  btnQueue.classList.add("button--warning");
 	  btnQueue.textContent = 'remove from queue';
   }
 
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
-	  btnWatched.classList.add("button--transparent");
+	  btnWatched.classList.add("button--warning");
 	  btnWatched.textContent = 'remove from watched';
   }
 	}
@@ -214,7 +214,7 @@ function checkHomepageForDuplicates() {
 
 if (filmsIds.queueFilmsIds.some(id => id === currentFilmId)) {
 const btnQueue = document.querySelector('[data-queue]');
-	  btnQueue.classList.add("button--transparent");
+	  btnQueue.classList.add("button--warning");
 	  btnQueue.textContent = 'already added to queue';
   btnQueue.setAttribute('disabled', "disabled");
   btnQueue.classList.add('card__btn--disabled');
@@ -222,7 +222,7 @@ const btnQueue = document.querySelector('[data-queue]');
 
       	  if (filmsIds.watchedFilmsIds.some(id => id === currentFilmId)) {
 		  const btnWatched = document.querySelector('[data-watched]');
-	  btnWatched.classList.add("button--transparent");
+	  btnWatched.classList.add("button--warning");
 	  btnWatched.textContent = 'already added to watched';
     btnWatched.setAttribute('disabled', "disabled");
             btnWatched.classList.add('card__btn--disabled');
@@ -246,7 +246,7 @@ function changeStyleBtn(button, name) {
     const currentPage = getCurrentPage();
 
           button.classList.remove('button--orange');
-button.classList.add('button--transparent');
+button.classList.add('button--warning');
 
           if(currentPage == 'library'){
 button.textContent = `remove from ${name}`;
@@ -260,7 +260,7 @@ button.textContent = `remove from ${name}`;
 // Функция удаления фильма
 function removeMovieById(button, array) {
 array = array.filter(id => id !== currentFilmId);
-button.classList.remove('button--transparent');
+button.classList.remove('button--warning');
 button.classList.add('button--orange');
 button.textContent = 'add to watched';
 }
