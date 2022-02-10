@@ -31,11 +31,28 @@
 
 .modal-background--dark-scheme {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
-
 }
 
 .team-modal .main-text-color--dark-scheme {
   color: #ffffff;
+}
+
+.team-modal .team-wrapper--dark-scheme {
+  background-color: #0f0f0f;
+}
+
+.team-modal .social-list-icon--dark-scheme {
+  fill: #ffffff;
+  &:hover {
+    fill: #ff6b08;
+  }
+}
+
+.team-modal .team-close-cross--dark-scheme {
+  stroke: #ffffff;
+  &:hover {
+    stroke: #ff6b08;
+  }
 }
 
 .tui-pagination .tui-page-btn.tui-page-btn--dark-scheme {

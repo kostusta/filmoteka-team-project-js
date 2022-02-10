@@ -24,6 +24,12 @@ export const refs = {
   teamModalBg: document.querySelector('.team-modal-content'),
   teamModalListTextColor: [...document.querySelectorAll('.team-list-text')],
   teamModalListTitleColor: [...document.querySelectorAll('.team-list-title')],
+    teamModalListIconColor: [...document.querySelectorAll('.social-list-icon')],
+	     teamModalListWrapperBgColor: [...document.querySelectorAll('.team-wrapper')],
+
+    teamModalCloseBtnColor: document.querySelector('.team-close-cross'),
+	 
+
 
   // header buttons click handler refs
   libraryList: document.querySelector('.library__list'),
