@@ -1,8 +1,9 @@
 import Api from './apiMoviesSearch';
-import filmCardSearch from '../templates/filmCardSearch';
+import filmCard from '../templates/film-card.hbs';
 // import filmCard from '../templates/movie-card.hbs';
 import { startPreloader, stopPreloader } from './preloader';
 import { pagination } from './pagination';
+import { getGenres } from './galery';
 
 const api = new Api();
 
@@ -14,37 +15,37 @@ const headerFormInput = document.querySelector('.header__input');
 
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 
-pagination.on('beforeMove', e => {
-  startPreloader();
-  api.page = e.page;
-  api
-    .fetchSearchMovies()
-    .then(async movies => {
-      const genres = await api.fetchGenre();
-      return { movies, genres };
-    })
-    .then(obj => {
-      const data = obj.movies.results.map(({ release_date, genre_ids, ...movie }) => {
-        const data = {
-          ...movie,
-          release_date: release_date?.split('-')[0],
-          genres: genre_ids.map(id => obj.genres[id]), // переобразование id в name
-        };
-        if (data.genres.length > 3) {
-          data.genres.splice(2, genre_ids.length - 2, 'Other');
-        }
-        return { ...data, genres: data.genres.join(', ') };
-      });
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
-      appendMovieCardMarkup(data);
-      stopPreloader();
-    })
-    .catch(err => console.log(err));
-});
+// pagination.on('beforeMove', e => {
+//   startPreloader();
+//   api.page = e.page;
+//   api
+//     .fetchSearchMovies()
+//     .then(async movies => {
+//       const genres = await api.fetchGenre();
+//       return { movies, genres };
+//     })
+//     .then(obj => {
+//       const data = obj.movies.results.map(({ release_date, genre_ids, ...movie }) => {
+//         const data = {
+//           ...movie,
+//           release_date: release_date?.split('-')[0],
+//           genres: genre_ids.map(id => obj.genres[id]), // переобразование id в name
+//         };
+//         if (data.genres.length > 3) {
+//           data.genres.splice(2, genre_ids.length - 2, 'Other');
+//         }
+//         return { ...data, genres: data.genres.join(', ') };
+//       });
+//       window.scrollTo({
+//         top: 0,
+//         left: 0,
+//         behavior: 'smooth',
+//       });
+//       appendMovieCardMarkup(data);
+//       stopPreloader();
+//     })
+//     .catch(err => console.log(err));
+// });
 
 function onSearchMovies(event) {
   startPreloader();
@@ -84,8 +85,8 @@ function onSearchMovies(event) {
           appendMovieCardMarkup(movies.results);
           cleanInput();
 
-          pagination.setTotalItems(movies.total_results);
-          pagination.movePageTo(1);
+          // pagination.setTotalItems(movies.total_results);
+          // pagination.movePageTo(1);
 
           stopPreloader();
         }
@@ -101,6 +102,6 @@ function clearMovieCardContainer() {
 }
 
 async function appendMovieCardMarkup(data) {
-  const markup = data.map(filmCardSearch).join('');
+  const markup = getGenres(data).map(filmCard).join('');
   cardList.innerHTML = markup;
 }
