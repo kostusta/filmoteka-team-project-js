@@ -1,8 +1,9 @@
 import Api from './apiMoviesSearch';
-import filmCardSearch from '../templates/filmCardSearch';
+import filmCard from '../templates/film-card.hbs';
 // import filmCard from '../templates/movie-card.hbs';
 import { startPreloader, stopPreloader } from './preloader';
 import { pagination } from './pagination';
+import { getGenres } from './galery';
 
 const api = new Api();
 
@@ -13,8 +14,6 @@ const headerFormSubmitBtn = document.querySelector('.search-button');
 const headerFormInput = document.querySelector('.header__input');
 
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
-
-
 
 function onSearchMovies(event) {
   startPreloader();
@@ -54,8 +53,8 @@ function onSearchMovies(event) {
           appendMovieCardMarkup(movies.results);
           cleanInput();
 
-          pagination.setTotalItems(movies.total_results);
-          pagination.movePageTo(1);
+          // pagination.setTotalItems(movies.total_results);
+          // pagination.movePageTo(1);
 
           stopPreloader();
         }
@@ -104,6 +103,6 @@ function clearMovieCardContainer() {
 }
 
 async function appendMovieCardMarkup(data) {
-  const markup = data.map(filmCardSearch).join('');
+  const markup = getGenres(data).map(filmCard).join('');
   cardList.innerHTML = markup;
 }

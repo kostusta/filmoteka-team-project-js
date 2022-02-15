@@ -28,7 +28,8 @@ export function darkThemeOff() {
   refs.footerDomEl.classList.add('footer');
   refs.filmModal.classList.remove('modal-background--dark-scheme');
   refs.teamModalBg.classList.remove('modal-background--dark-scheme');
-  
+    refs.teamModalCloseBtnColor.classList.remove('team-close-cross--dark-scheme');
+
   refs.teamModalListTextColor.map(item => {
     item.classList.remove('main-text-color--dark-scheme');
   });
@@ -36,7 +37,15 @@ export function darkThemeOff() {
   refs.teamModalListTitleColor.map(item => {
     item.classList.remove('main-text-color--dark-scheme');
   });
+      refs.teamModalListIconColor.map(item => {
+    item.classList.remove('social-list-icon--dark-scheme');
+  });
+        refs.teamModalListWrapperBgColor.map(item => {
+    item.classList.remove('team-wrapper--dark-scheme');
+  });
 }
+
+
 
 export function darkThemeOn() {
   refs.toggleControl.classList.add('toggle-control--checked');
@@ -49,15 +58,22 @@ export function darkThemeOn() {
   refs.footerDomEl.classList.remove('footer');
   refs.filmModal.classList.add('modal-background--dark-scheme');
   refs.teamModalBg.classList.add('modal-background--dark-scheme');
-
+  refs.teamModalCloseBtnColor.classList.add('team-close-cross--dark-scheme');
   refs.teamModalListTextColor.map(item => {
     item.classList.add('main-text-color--dark-scheme');
   });
-
   refs.teamModalListTitleColor.map(item => {
     item.classList.add('main-text-color--dark-scheme');
   });
+    refs.teamModalListIconColor.map(item => {
+    item.classList.add('social-list-icon--dark-scheme');
+  });
+      refs.teamModalListWrapperBgColor.map(item => {
+    item.classList.add('team-wrapper--dark-scheme');
+  });
 }
+
+
 
 function userThemeSetingsDetection() {
   window.addEventListener('load', () => {
